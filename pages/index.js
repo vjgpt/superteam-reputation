@@ -88,7 +88,6 @@ export default function Home({ data }) {
   return (
     
     <div className={styles.container}>
-      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
       <Head>
         <title>Reputation Leaderboard</title>
         <meta name="description" content="Reputation Leaderboard" />
