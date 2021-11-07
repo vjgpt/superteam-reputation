@@ -8,8 +8,18 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.5.0",
+    "@emotion/styled": "^11.3.0",
+    "@material-ui/core": "^4.12.3",
+    "@mui/icons-material": "^5.0.5",
+    "@mui/material": "^5.0.6",
+    "@mui/x-data-grid": "^4.0.2",
+    "@notionhq/client": "^0.4.6",
+    "chart.js": "^3.6.0",
+    "dotenv": "^10.0.0",
     "next": "12.0.2",
     "react": "17.0.2",
+    "react-chartjs-2": "^3.3.0",
     "react-dom": "17.0.2"
   },
   "devDependencies": {

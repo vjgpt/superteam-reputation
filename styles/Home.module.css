@@ -12,6 +12,11 @@
   align-items: center;
 }
 
+.main h1 {
+  margin-bottom: 2rem;
+  color: #ffffff;
+}
+
 .footer {
   display: flex;
   flex: 1;
@@ -29,7 +34,7 @@
 }
 
 .title a {
-  color: #0070f3;
+  color: #000000;
   text-decoration: none;
 }
 

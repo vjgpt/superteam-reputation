@@ -8,6 +8,8 @@ import DoughnutGraph from '../components/DoughnutGraph';
 
 const { Client } = require('@notionhq/client');
 
+const notion = new Client({ auth: 'secret_PcEOXPFmwMHxcXtaBFWX0hisC4xIpLEbdm1ZV1D7nP7' });
+
 export default function Home({ data }) {
   let total_skills = [];
   const notionData = data.results.map(item => {
@@ -113,7 +115,16 @@ export default function Home({ data }) {
       </main>
 
       <footer className={styles.footer}>
-        Copyright &copy; {new Date().getFullYear()} Superteam
+        {/* <a
+          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Powered by{' '}
+          <span className={styles.logo}>
+            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
+          </span>
+        </a> */}
       </footer>
     </div>
   )
@@ -122,7 +133,6 @@ export default function Home({ data }) {
 
 export async function getServerSideProps() {
   // Fetch data from external API
-  const notion = new Client({ auth: 'secret_PcEOXPFmwMHxcXtaBFWX0hisC4xIpLEbdm1ZV1D7nP7' });
   const res = await notion.databases.query({
     database_id: '7c10df77534f43399203609b0d2ae5c2',
     filter: {
