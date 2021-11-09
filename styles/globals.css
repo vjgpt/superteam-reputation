@@ -32,6 +32,12 @@ a {
   background: rgba(200,200,200,0.4) !important; 
 }
 
+.MuiTableHead-root{
+  background: #BEAEE2;
+  font-size: medium;
+
+}
+
 .MuiTablePagination-root{
   background: rgba(150,150,150,0.4);
   font-size: 1.1rem !important;
@@ -39,13 +45,13 @@ a {
 }
 
 .MuiTableCell-sizeMedium{
-  font-size: 1.1rem;
-  padding: 22px;
+  font-size: 1.1rem !important;
+  padding: 22px !important;
 }
 
 .MuiButton-root{
-  color: white;
-  background: rgba(255,255,255,0.4);
+  color: #FFFFFF !important;
+  background: rgba(255,255,255,0.4) !important;
   border: 0.2px solid rgba(255,255,255,0.4) !important;
   size: 10cm;
 }
