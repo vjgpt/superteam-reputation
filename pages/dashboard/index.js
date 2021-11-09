@@ -1,12 +1,11 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import styles from '../../styles/Home.module.css'
 import * as React from 'react';
-import EnhancedTable from '../components/Leaderboard';
-import Chart from 'chart.js/auto';
-import DoughnutGraph from '../components/DoughnutGraph';
+import DoughnutGraph from '../../components/DoughnutGraph';
 
-export default function Home({ data }) {
+
+export default function Dashboard({ data }) {
   let total_skills = [];
   const notionData = data.results.map(item => {
     let result_list = {}
@@ -87,35 +86,25 @@ export default function Home({ data }) {
     
     <div className={styles.container}>
       <Head>
-        <title>Reputation Leaderboard</title>
-        <meta name="description" content="Reputation Leaderboard" />
+        <title>Reputation Dashboard</title>
+        <meta name="description" content="Reputation Dashboard" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          <a href="https://superteam.fun">Superteam</a> Reputation Leaderboard
+          <a href="https://superteam.fun">Superteam</a> Reputation Dashboard
         </h1>
 
-        <EnhancedTable
+        <DoughnutGraph 
           rows={sumGroupedData}
           uniqueSkills={uniqueSkills}
-          />
-        {/* <dashboard 
-        rows={sumGroupedData}
-        uniqueSkills={uniqueSkills}
-        /> */}
-
-        {/* <DoughnutGraph 
-          rows={sumGroupedData}
-          uniqueSkills={uniqueSkills}
-        /> */}
+        />
 
       </main>
     </div>
   )
 }
-
 
 export async function getServerSideProps() {
   const { Client } = require('@notionhq/client');

@@ -1,6 +1,7 @@
 import { NoEncryption } from '@mui/icons-material';
 import React from 'react';
 import {Doughnut} from 'react-chartjs-2';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 
 
 
@@ -41,6 +42,9 @@ export default (...props) => {
 
       const options = {
         plugins:{
+            datalabels  : {
+                display: true
+              },
             font:{
                 defaultFontFamily: 'Roboto'
             },

@@ -23,6 +23,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import { visuallyHidden } from "@mui/utils";
 import { ImportantDevices } from "@mui/icons-material";
+import Avatar from '@mui/material/Avatar';
 
 function descendingComparator(a, b, orderBy) {
     if (b[orderBy] < a[orderBy]) {
@@ -104,6 +105,8 @@ function EnhancedTableHead(props) {
     return (
     <TableHead sx={{ backgroundColor: "#BEAEE2" }}>
         <TableRow >
+        <TableCell padding="none" size="small">
+        </TableCell>
         {headCells.map((headCell) => (
             <TableCell
             key={headCell.id}
@@ -207,6 +210,17 @@ export default function EnhancedTable({ children, ...props }) {
                         key={row.id}
                         classes={styles.tableRow}
                       >
+                      <TableCell padding="none" size="small">
+                      <Avatar
+                          sx={{
+                            width: "35px",
+                            height: "35px",
+                            margin: "0px 0px 0px 15px",
+                            borderRadius: "50%",
+                            backgroundColor: "#BEAEE2",
+                          }}
+                          />
+                      </TableCell>
                         <TableCell
                           component="th"
                           id={labelId}
