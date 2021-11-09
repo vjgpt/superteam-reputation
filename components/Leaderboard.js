@@ -103,7 +103,7 @@ function EnhancedTableHead(props) {
     };
 
     return (
-    <TableHead sx={{ backgroundColor: "#BEAEE2" }}>
+    <TableHead >
         <TableRow >
         <TableCell padding="none" size="small">
         </TableCell>
