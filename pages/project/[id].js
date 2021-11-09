@@ -2,11 +2,12 @@ import getNotionData from "../api/notionData";
 import sumGroupByName from "../api/notionData";
 import EnhancedTable from "../../components/Leaderboard";
 import styles from '../../styles/Home.module.css'
+import getNotionDatabase from "../api/notionDatabase";
 
 export const getStaticPaths = async () => {
   const paths = [
     { params: { id: "7c10df77534f43399203609b0d2ae5c2" } },
-    { params: { id: "d2c8414f2b014c32840f9aa80bce6d08" } },
+    { params: { id: "d2c8414f2b014c32840f9aa80bce6d08"} },
   ];
   return { paths, fallback: false };
 };
@@ -14,14 +15,51 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async (context) => {
   const id = context.params.id;
   const project = await getNotionData(id);
+  const database_detail = "Reputation System"
+
+  // const dbname = "DATABASE"
+  // const dbname = database_detail.results.map(item => {
+  //   let name = ""
+  //   if (item.id == id) {
+  //     name = item.title.plain_text
+  //   }
+  //   return {
+  //     ...name
+  //   }
+  // })
+  // for(let i = 0; i < database_detail.results.length; i++){
+  //   if(database_detail[i].name === "Total"){
+  //     const total = database_detail[i].value;
+  //     project.total = total;
+  //   }
+  // }
+  // const database_name = () => database_detail.results.map(item => {
+  //   if (item.id == id) {
+  //     return item.title.plain_text
+  //   }
+  // });
+
   return {
     props: {
       project,
+      database_detail,
     },
   };
 };
 
-const Projects = ({ project }) => {
+const Projects = ({ project, database_detail }) => {
+  console.log(database_detail)
+
+  // const database_detail_name = database_detail.results.map(item => {
+  //   let name = ""
+  //   if (item.id == project.id) {
+  //     name = item.title.plain_text
+  //   }
+  //   return {
+  //     ...name
+  //   }
+  // })
+
     const data = project;
     let total_skills = [];
     const notionData = data.results.map(item => {
@@ -103,7 +141,7 @@ const Projects = ({ project }) => {
     <div>
               <main className={styles.main}>
         <h1 className={styles.title}>
-          <a href="https://superteam.fun">Superteam</a> Reputation Leaderboard
+          <a href="https://superteam.fun">Superteam</a> {database_detail}
         </h1>
 
         <EnhancedTable

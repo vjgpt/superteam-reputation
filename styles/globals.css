@@ -4,7 +4,9 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-    background-image: linear-gradient(to right, #fdefff, #f9dafe, #f4c5fd, #eeb0fb, #e79bfa, #e69cfa, #e69cfb, #e59dfb, #ebb3fd, #f0c8fe, #f6ddff, #fbf1ff);
+    background: rgb(252,70,107);
+background: radial-gradient(circle, rgba(252,70,107,1) 0%, rgba(63,94,251,1) 100%);
+    /* background-image: linear-gradient(to right, #fdefff, #f9dafe, #f4c5fd, #eeb0fb, #e79bfa, #e69cfa, #e69cfb, #e59dfb, #ebb3fd, #f0c8fe, #f6ddff, #fbf1ff); */
   }
 
 a {
@@ -39,4 +41,16 @@ a {
 .MuiTableCell-sizeMedium{
   font-size: 1.1rem;
   padding: 22px;
+}
+
+.MuiButton-root{
+  color: white;
+  background: rgba(255,255,255,0.4);
+  border: 0.2px solid rgba(255,255,255,0.4) !important;
+  size: 10cm;
+}
+
+.MuiStack-root{
+  background: rgba(255,255,255,0.4);
+  padding-block-start: 10% !important;
 }

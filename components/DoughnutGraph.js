@@ -22,7 +22,8 @@ export default (...props) => {
     const data = {
         labels: Object.keys(groupbysum),          
       datasets: [{
-        borderColor: 'none',
+        borderColor: 'white',
+        fontColor: 'white',
         borderWidth: 0,
         data: Object.values(groupbysum),
         backgroundColor: [
@@ -41,6 +42,9 @@ export default (...props) => {
       };
 
       const options = {
+        layout: {
+            padding: 0
+        },
         plugins:{
             datalabels  : {
                 display: true
@@ -49,7 +53,11 @@ export default (...props) => {
                 defaultFontFamily: 'Roboto'
             },
             legend:{
-                display: true
+                display: true,
+                labels: {
+                    color: 'white',
+                    textAlign: 'left',
+                }
             },
             tooltip:{
                 callback: function(tooltipItem, data) {
