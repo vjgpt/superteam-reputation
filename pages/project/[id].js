@@ -1,8 +1,6 @@
-import getNotionData from "../api/notionData";
-import sumGroupByName from "../api/notionData";
+import queryNotionData from "../api/notion";
 import EnhancedTable from "../../components/Leaderboard";
 import styles from '../../styles/Home.module.css'
-import getNotionDatabase from "../api/notionDatabase";
 
 export const getStaticPaths = async () => {
   const paths = [
@@ -14,7 +12,17 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async (context) => {
   const id = context.params.id;
-  const project = await getNotionData(id);
+  const filterCondition = {
+    or: [
+      {
+        property: 'Status',
+        select: {
+          equals: 'Complete',
+        },
+      }
+    ],
+  }
+  const project = await queryNotionData(id, filterCondition);
   const database_detail = "Reputation System"
 
   // const dbname = "DATABASE"
@@ -130,12 +138,15 @@ const Projects = ({ project, database_detail }) => {
       }
   
       return {
-        id: key,
+        id: values[0].id,
+        username: key,
         ...skill_points,
         total_points: values.reduce((acc, item) => acc + parseInt(item.total_points), 0),
         timestamp: values[0].timestamp
       }
     })
+    sumGroupedData.sort((a,b) => (a.total_points < b.total_points) ? 1 : -1)
+    console.log(sumGroupedData)
 
   return (
     <div>

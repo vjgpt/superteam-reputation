@@ -1,10 +1,7 @@
-import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import * as React from 'react';
 import EnhancedTable from '../components/Leaderboard';
-import Chart from 'chart.js/auto';
-import DoughnutGraph from '../components/DoughnutGraph';
 
 export default function Home({ data }) {
   let total_skills = [];
@@ -76,22 +73,18 @@ export default function Home({ data }) {
     }
 
     return {
-      id: key,
+      id: values[0].id,
+      username: key,
       ...skill_points,
       total_points: values.reduce((acc, item) => acc + parseInt(item.total_points), 0),
       timestamp: values[0].timestamp
     }
   })
+  sumGroupedData.sort((a,b) => (a.total_points < b.total_points) ? 1 : -1)
 
   return (
     
     <div className={styles.container}>
-      <Head>
-        <title>Reputation Leaderboard</title>
-        <meta name="description" content="Reputation Leaderboard" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <main className={styles.main}>
         <h1 className={styles.title}>
           <a href="https://superteam.fun">Superteam</a> Reputation Leaderboard

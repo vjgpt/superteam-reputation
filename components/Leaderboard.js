@@ -24,6 +24,7 @@ import FilterListIcon from "@mui/icons-material/FilterList";
 import { visuallyHidden } from "@mui/utils";
 import { ImportantDevices } from "@mui/icons-material";
 import Avatar from '@mui/material/Avatar';
+import TopRanking from "../components/TopRanking"
 
 function descendingComparator(a, b, orderBy) {
     if (b[orderBy] < a[orderBy]) {
@@ -77,10 +78,10 @@ const headCells = [
         label: "Writer"
     },
     {
-        id: "Operations",
+        id: "Designer",
         numeric: true,
         disablePadding: false,
-        label: "Operations"
+        label: "Designer"
     },
     {
         id: "Strategy",
@@ -180,6 +181,8 @@ export default function EnhancedTable({ children, ...props }) {
     
   
     return (
+      <>
+        {/* <TopRanking /> */}
       <Container sx={{ width: "100%", }}>
           <TableContainer sx={{ marginLeft: "auto", marginRight: "auto",borderRadius: "20px 20px 0px 0px" }}>
             <Table
@@ -227,13 +230,13 @@ export default function EnhancedTable({ children, ...props }) {
                           scope="row"
                           padding="normal"
                         >
-                          {row.id}
+                          {row.username}
                         </TableCell>
-                        <TableCell align="right">{row.Developer}</TableCell>
-                        <TableCell align="right">{row.Writer}</TableCell>
-                        <TableCell align="right">{row.Operations}</TableCell>
-                        <TableCell align="right">{row.Strategy}</TableCell>
-                        <TableCell align="right">{row.total_points}</TableCell>
+                        <TableCell align="right" >{row.Developer}</TableCell>
+                        <TableCell align="right" >{row.Writer}</TableCell>
+                        <TableCell align="right" >{row.Designer}</TableCell>
+                        <TableCell align="right" >{row.Strategy}</TableCell>
+                        <TableCell align="right">{row.total_points}XP</TableCell>
                       </TableRow>
                     );
                   })}
@@ -256,5 +259,6 @@ export default function EnhancedTable({ children, ...props }) {
             sx={{ backgroundColor: "#BEAEE2",  borderRadius: "0px 0px 20px 20px" }}
           />
       </Container>
+      </>
     );
   }

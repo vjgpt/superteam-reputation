@@ -43,8 +43,72 @@ a {
   font-size: 1.1rem !important;
   padding: 22px !important;
 }
+.MuiTablePagination-selectLabel{
+  font-size: 1.1rem !important;
+  margin-top: auto !important;
+  margin-bottom: auto !important;
+}
+.MuiInputBase-root-MuiTablePagination-select{
+  font-size: 1.1rem !important;
+  margin: auto !important;
+  margin-right: 5px !important;
+}
+.MuiTablePagination-displayedRows{
+  font-size: 1.1rem !important;
+  margin-top: auto !important;
+  margin-bottom: auto !important;
+}
 
-.MuiButton-root{
+/* Navbar */
+.navbar{
+  background: rgba(221, 211, 211, 0.4);
+  font-size: 1.1rem;
+  padding: 10px !important;
+}
+
+/* .navbar-brand{
+  font-size: 1.5rem;
+  font: bolder;
+} */
+.navbar-brand{
+  font-size: 22px;
+  color: rgb(0, 0, 0);
+}
+
+.navbar-collapse{
+  color: blue;
+  font: 100% sans-serif;
+  padding: 0.5em;
+  float: right;
+}
+.navbar-nav {
+  float: left;
+}
+.navbar-nav li {
+  display: inline-block;
+}
+.navbar-nav li:hover .dropdown-menu {
+  padding: 0.5em;
+  display: block;
+  background: rgba(255,255,255,0.4);
+  margin-right: 0.5em;
+}
+.dropdown-menu {
+  padding: 0.5em;
+  display: none;
+  background: rgba(255,255,255,0.4);
+  border-radius: 0.5em;
+
+}
+
+/* rotate caret on hover */
+.dropdown-menu > li > a:hover:after {
+  text-decoration: underline;
+  transform: rotate(-100deg);
+  background: rgba(180,180,180,0.4);
+}
+
+/* .MuiButton-root{
   color: #FFFFFF !important;
   background: rgba(255,255,255,0.4) !important;
   border: 0.2px solid rgba(255,255,255,0.4) !important;
@@ -54,4 +118,4 @@ a {
 .MuiStack-root{
   background: rgba(255,255,255,0.4);
   padding-block-start: 10% !important;
-}
+} */
