@@ -105,7 +105,6 @@ const Projects = ({ projectData }) => {
       }
     })
   sumGroupedData.sort((a,b) => (a.total_points < b.total_points) ? 1 : -1)
-  console.log(sumGroupedData)
 
   return (
     <div>

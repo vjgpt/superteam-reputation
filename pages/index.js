@@ -2,45 +2,62 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import * as React from 'react';
 import EnhancedTable from '../components/Leaderboard';
+import getNotionData from './api/notionData';
 
 export default function Home({ data }) {
-  let total_skills = [];
-  const notionData = data.results.map(item => {
-    let result_list = {}
-    result_list.id = item.id
-    result_list.username = item.properties.Engineers.select.name
-    result_list.points = item.properties.Points.rich_text[0].plain_text.slice(0, -2)
 
-    if (item.properties.Skills != undefined && item.properties.Skills.multi_select.length > 0) {
-      let skill_list = []
-      for (let i = 0; i < item.properties.Skills.multi_select.length; i++) {
-        result_list[item.properties.Skills.multi_select[i].name] = item.properties.Points.rich_text[0].plain_text.slice(0, -2)
-        skill_list.push(item.properties.Skills.multi_select[i].name)
-        total_skills.push(item.properties.Skills.multi_select[i].name)
+  let notionData = []
+  let uniqueSkills = ['Developer','Writer','Designer','Strategy']
+  
+  data['bounty'].forEach(item => {
+    item.results.forEach(element => {
+      let result_list = {}
+      const skill = element.properties.Skill.select.name
+      result_list.id = element.id
+      result_list.username = element.properties.Name.title[0].plain_text
+      result_list.total_points = element.properties.Total.formula.number
+      result_list[skill] = element.properties.Total.formula.number
+      result_list.timestamp = element.last_edited_time
+      notionData.push(result_list)
+    }
+    )})
+
+    data['project'].forEach(element => {
+      element.results.forEach(item => {
+        let result_list = {}
+        result_list.id = item.id
+        result_list.username = item.properties.Assignee.select.name
+        result_list.points = item.properties.Points.number
+    
+        if (item.properties.Skill != undefined && item.properties.Skill.multi_select.length > 0) {
+          let skill_list = []
+          for (let i = 0; i < item.properties.Skill.multi_select.length; i++) {
+            result_list[item.properties.Skill.multi_select[i].name] = item.properties.Points.number
+            skill_list.push(item.properties.Skill.multi_select[i].name)
+          }
+          result_list.skills = skill_list
+        }
+        result_list.total_points = item.properties.Points.number
+        result_list.timestamp = item.last_edited_time
+        notionData.push(result_list)
+        return {
+          ...result_list  
+        }
       }
-      result_list.skills = skill_list
-    }
-    result_list.total_points = item.properties.Points.rich_text[0].plain_text.slice(0, -2)
-    result_list.timestamp = item.last_edited_time
+      )})
 
-    return {
-      ...result_list  
-    }
-  })
-  let uniqueSkills = [...new Set(total_skills)]
-
-  const data_list = notionData.map(item => {
-    let data = []
-    const header =  Object.keys(item)
-    let difference = uniqueSkills.filter(x => !header.includes(x));
-    for (let i = 0; i < difference.length; i++) {
-      data[difference[i]] = 0
-    }
-    return {
-      ...item,
-      ...data
-    }
-  })
+      const data_list = notionData.map(item => {
+        let data = []
+        const header =  Object.keys(item)
+        let difference = uniqueSkills.filter(x => !header.includes(x));
+        for (let i = 0; i < difference.length; i++) {
+          data[difference[i]] = 0
+        }
+        return {
+          ...item,
+          ...data
+        }
+      })
 
   const groupedData = data_list.reduce((acc, item) => {
     const { id, username, total_points, timestamp } = item
@@ -89,21 +106,11 @@ export default function Home({ data }) {
         <h1 className={styles.title}>
           <a href="https://superteam.fun">Superteam</a> Reputation Leaderboard
         </h1>
-
+          {/* <p>{JSON.stringify(data)}</p> */}
         <EnhancedTable
           rows={sumGroupedData}
           uniqueSkills={uniqueSkills}
           />
-        {/* <dashboard 
-        rows={sumGroupedData}
-        uniqueSkills={uniqueSkills}
-        /> */}
-
-        {/* <DoughnutGraph 
-          rows={sumGroupedData}
-          uniqueSkills={uniqueSkills}
-        /> */}
-
       </main>
     </div>
   )
@@ -114,27 +121,65 @@ export async function getServerSideProps() {
   const { Client } = require('@notionhq/client');
   // Fetch data from external API
   const notion = new Client({ auth: 'secret_PcEOXPFmwMHxcXtaBFWX0hisC4xIpLEbdm1ZV1D7nP7' });
-  const res = await notion.databases.query({
-    database_id: '7c10df77534f43399203609b0d2ae5c2',
-    filter: {
-      or: [
-        {
-          property: 'Status',
-          select: {
-            equals: 'Complete',
-          },
-        }
-      ],
-    },
-    sorts: [
+  
+  const bountyDbDetails = [{
+    id: "818772edb3104feb9e33d5dc862f69e9",
+    name: "Writer Bounty Board"
+  },
+  {
+    id: "a6370b552a874de1aa51d2f87806bf18",
+    name: "Designer Bounty Board"
+  }
+]
+  const filterCondition = {
+    or: [
       {
-        timestamp: 'last_edited_time',
-        direction: 'descending',
-      },
+        property: 'Name',
+        title: {
+          is_not_empty: true,
+        },
+      }
     ],
-  });
+  }
 
-  const data = await res
+  const bountyData = []
+  const asyncRes = await Promise.all( bountyDbDetails.map(async item => {
+    const data = await getNotionData(item.id, filterCondition);
+    bountyData.push({...data})
+  }))
+
+
+  const projectDbDetails = [{
+      id: "6b531bc0f091468a864e8ce334818331",
+      name: "Reputation System"
+    },
+    {
+      id: "e4cb2289279e4d788f278f54709afed0",
+      name: "Member NFT"
+    }
+  ]
+  const projectFilterCondition = {
+    or: [
+      {
+        property: 'Status',
+        select: {
+          equals: 'Completed',
+        },
+      }
+    ],
+  }
+
+  const projectData = []
+  const asyncProjectRes = await Promise.all( projectDbDetails.map(async item => {
+    const data = await getNotionData(item.id, projectFilterCondition);
+    projectData.push({...data})
+  }))
+  
+
+  const data = {
+    bounty: bountyData,
+    project: projectData
+  }
 
   // Pass data to the page via props
   return { props: { data } }

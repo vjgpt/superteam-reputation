@@ -17,7 +17,6 @@ export default (...props) => {
       }
       return acc;
     }, {});
-    console.log(Object.keys(groupbysum))
 
     const data = {
         labels: Object.keys(groupbysum),          
