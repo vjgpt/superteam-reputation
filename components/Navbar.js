@@ -24,9 +24,8 @@ export default function Navbar() {
                 Projects
                 </a>
                 <div className="dropdown-menu m-0" aria-labelledby="navbarDropdown">
-                <Link href="/project/7c10df77534f43399203609b0d2ae5c2"><a className="dropdown-item" >Reputation System</a></Link>
-                <Link href="/project/d2c8414f2b014c32840f9aa80bce6d08"><a className="dropdown-item" >Mission 5K</a></Link>
-                <Link href="/project/d2c8414f2b014c32840f9aa80bce6d08"><a className="dropdown-item" >Web2 to Web3 Education</a></Link>
+                <Link href="/project/6b531bc0f091468a864e8ce334818331"><a className="dropdown-item" >Reputation System</a></Link>
+                <Link href="/project/e4cb2289279e4d788f278f54709afed0"><a className="dropdown-item" >Member NFT</a></Link>
                 </div>
             </li>
             </ul>

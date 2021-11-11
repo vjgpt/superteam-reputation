@@ -1,11 +1,11 @@
-import queryNotionData from "../api/notion";
+import getNotionData from '../api/notionData';
 import EnhancedTable from "../../components/Leaderboard";
 import styles from '../../styles/Home.module.css'
 
 export const getStaticPaths = async () => {
   const paths = [
-    { params: { id: "7c10df77534f43399203609b0d2ae5c2" } },
-    { params: { id: "d2c8414f2b014c32840f9aa80bce6d08"} },
+    { params: { id: "6b531bc0f091468a864e8ce334818331" } },
+    { params: { id: "e4cb2289279e4d788f278f54709afed0"} },
   ];
   return { paths, fallback: false };
 };
@@ -17,13 +17,18 @@ export const getStaticProps = async (context) => {
       {
         property: 'Status',
         select: {
-          equals: 'Complete',
+          equals: 'Completed',
         },
       }
     ],
   }
-  const project = await queryNotionData(id, filterCondition);
-  const database_detail = "Reputation System"
+  const response = await getNotionData(id, filterCondition);
+  const project = {
+    ...response,
+    id,
+  }
+
+  // const database_detail = "Reputation System"
 
   // const dbname = "DATABASE"
   // const dbname = database_detail.results.map(item => {
@@ -50,13 +55,18 @@ export const getStaticProps = async (context) => {
   return {
     props: {
       project,
-      database_detail,
     },
   };
 };
 
-const Projects = ({ project, database_detail }) => {
-  console.log(database_detail)
+const Projects = ({ project}) => {
+  let database_detail = ""
+  const dbId = project.id
+  if (dbId === "6b531bc0f091468a864e8ce334818331") {
+    database_detail = "Reputation System"
+  } else if (dbId === "e4cb2289279e4d788f278f54709afed0") {
+    database_detail = "Member NFT"
+  }
 
   // const database_detail_name = database_detail.results.map(item => {
   //   let name = ""
@@ -70,29 +80,30 @@ const Projects = ({ project, database_detail }) => {
 
     const data = project;
     let total_skills = [];
+    let uniqueSkills = ['Developer','Writer','Designer','Strategy']
     const notionData = data.results.map(item => {
       let result_list = {}
       result_list.id = item.id
-      result_list.username = item.properties.Engineers.select.name
-      result_list.points = item.properties.Points.rich_text[0].plain_text.slice(0, -2)
+      result_list.username = item.properties.Assignee.select.name
+      result_list.points = item.properties.Points.number
   
-      if (item.properties.Skills != undefined && item.properties.Skills.multi_select.length > 0) {
+      if (item.properties.Skill != undefined && item.properties.Skill.multi_select.length > 0) {
         let skill_list = []
-        for (let i = 0; i < item.properties.Skills.multi_select.length; i++) {
-          result_list[item.properties.Skills.multi_select[i].name] = item.properties.Points.rich_text[0].plain_text.slice(0, -2)
-          skill_list.push(item.properties.Skills.multi_select[i].name)
-          total_skills.push(item.properties.Skills.multi_select[i].name)
+        for (let i = 0; i < item.properties.Skill.multi_select.length; i++) {
+          result_list[item.properties.Skill.multi_select[i].name] = item.properties.Points.number
+          skill_list.push(item.properties.Skill.multi_select[i].name)
+          total_skills.push(item.properties.Skill.multi_select[i].name)
         }
         result_list.skills = skill_list
       }
-      result_list.total_points = item.properties.Points.rich_text[0].plain_text.slice(0, -2)
+      result_list.total_points = item.properties.Points.number
       result_list.timestamp = item.last_edited_time
   
       return {
         ...result_list  
       }
     })
-    let uniqueSkills = [...new Set(total_skills)]
+    // let uniqueSkills = [...new Set(total_skills)]
   
     const data_list = notionData.map(item => {
       let data = []
@@ -146,28 +157,18 @@ const Projects = ({ project, database_detail }) => {
       }
     })
     sumGroupedData.sort((a,b) => (a.total_points < b.total_points) ? 1 : -1)
-    console.log(sumGroupedData)
 
   return (
     <div>
               <main className={styles.main}>
         <h1 className={styles.title}>
-          <a href="https://superteam.fun">Superteam</a> {database_detail}
+          {database_detail}
         </h1>
 
         <EnhancedTable
           rows={sumGroupedData}
           uniqueSkills={uniqueSkills}
           />
-        {/* <dashboard 
-        rows={sumGroupedData}
-        uniqueSkills={uniqueSkills}
-        /> */}
-
-        {/* <DoughnutGraph 
-          rows={sumGroupedData}
-          uniqueSkills={uniqueSkills}
-        /> */}
 
       </main>
     </div>

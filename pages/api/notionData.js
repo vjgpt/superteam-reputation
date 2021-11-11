@@ -1,7 +1,6 @@
 export default async function getNotionData (id ,filterCondition) {
     const { Client } = require('@notionhq/client');
     // Fetch data from external API
-    //const notion = new Client({ auth: 'secret_PcEOXPFmwMHxcXtaBFWX0hisC4xIpLEbdm1ZV1D7nP7' });
     const notion = new Client({ auth: 'secret_hnfbWyF8QLruAGfyLmbRWkbD9Ed6BQl1f3vIQYz1Cc9' });  
     const response = await notion.databases.query({
       database_id: id,
