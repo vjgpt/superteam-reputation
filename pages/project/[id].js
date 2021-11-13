@@ -56,6 +56,7 @@ export const getStaticProps = async (context) => {
     props: {
       project,
     },
+    revalidate: 10,
   };
 };
 
