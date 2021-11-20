@@ -117,7 +117,7 @@ export default function Home({ data }) {
 }
 
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const { Client } = require('@notionhq/client');
   // Fetch data from external API
   const notion = new Client({ auth: 'secret_PcEOXPFmwMHxcXtaBFWX0hisC4xIpLEbdm1ZV1D7nP7' });
@@ -182,5 +182,6 @@ export async function getServerSideProps() {
   }
 
   // Pass data to the page via props
-  return { props: { data } }
+  return { props: { data },
+  revalidate: 10, }
 }
