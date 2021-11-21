@@ -7,7 +7,7 @@ import getNotionData from './api/notionData';
 export default function Home({ data }) {
 
   let notionData = []
-  let uniqueSkills = ['Developer','Writer','Designer','Strategy']
+  let uniqueSkills = ['Developer','Writer','Designer','Strategy','DAO Ops']
   
   data['bounty'].forEach(item => {
     item.results.forEach(element => {
@@ -46,6 +46,19 @@ export default function Home({ data }) {
       }
       )})
 
+    data['community'].results.map(element => {
+        let result_list = {}
+        const skill = element.properties.Skill.multi_select[0].name
+        result_list.id = element.id
+        result_list.username = element.properties.Name.title[0].plain_text
+        result_list.total_points = element.properties.XP.formula.number
+        result_list[skill] = element.properties.XP.formula.number
+        result_list.timestamp = element.last_edited_time
+        notionData.push(result_list)
+      }
+      )
+
+
       const data_list = notionData.map(item => {
         let data = []
         const header =  Object.keys(item)
@@ -61,7 +74,7 @@ export default function Home({ data }) {
 
   const groupedData = data_list.reduce((acc, item) => {
     const { id, username, total_points, timestamp } = item
-    const key = username
+    const key = username.toLowerCase();
     const value = {
       ...item,
       timestamp
@@ -175,10 +188,32 @@ export async function getStaticProps() {
     projectData.push({...data})
   }))
   
+  const communityDetails = [{
+      id: "e9721f1938f0447aa0a3eedcfdaed726",
+      name: "Community Board"
+    },
+  ]
+  const communityfilterCondition = {
+    or: [
+      {
+        property: 'Name',
+        title: {
+          is_not_empty: true,
+        },
+      }
+    ],
+  }
+  let commsData = ''
+  const asyncCommsRes = await Promise.all( communityDetails.map(async item => {
+    const data = await getNotionData(item.id, filterCondition);
+    commsData = data
+  }))
+  
 
   const data = {
     bounty: bountyData,
-    project: projectData
+    project: projectData,
+    community: commsData,
   }
 
   // Pass data to the page via props

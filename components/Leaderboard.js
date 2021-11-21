@@ -1,6 +1,5 @@
 import * as React from "react";
 import PropTypes from "prop-types";
-import { alpha } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Table from "@mui/material/Table";
@@ -11,18 +10,7 @@ import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import TableSortLabel from "@mui/material/TableSortLabel";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import Paper from "@mui/material/Paper";
-import Checkbox from "@mui/material/Checkbox";
-import IconButton from "@mui/material/IconButton";
-import Tooltip from "@mui/material/Tooltip";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Switch from "@mui/material/Switch";
-import DeleteIcon from "@mui/icons-material/Delete";
-import FilterListIcon from "@mui/icons-material/FilterList";
 import { visuallyHidden } from "@mui/utils";
-import { ImportantDevices } from "@mui/icons-material";
 import Avatar from '@mui/material/Avatar';
 import TopRanking from "../components/TopRanking"
 
@@ -56,52 +44,34 @@ function descendingComparator(a, b, orderBy) {
     return stabilizedThis.map((el) => el[0]);
   }
 
+function EnhancedTableHead(props) {
+    const { uniqueSkills, order, orderBy, onRequestSort } = props;
+    const createSortHandler = (property) => (event) => {
+    onRequestSort(event, property);
+    };
 
-
-const headCells = [
-    {
-        id: "id",
-        numeric: false,
-        disablePadding: true,
-        label: "Name"
-    },
-    {
-        id: "Developer",
-        numeric: true,
-        disablePadding: false,
-        label: "Developer"
-    },
-    {
-        id: "Writer",
-        numeric: true,
-        disablePadding: false,
-        label: "Writer"
-    },
-    {
-        id: "Designer",
-        numeric: true,
-        disablePadding: false,
-        label: "Designer"
-    },
-    {
-        id: "Strategy",
-        numeric: true,
-        disablePadding: false,
-        label: "Strategy"
-    },
-    {
+    const headCells = [
+      {
+          id: "id",
+          numeric: false,
+          disablePadding: true,
+          label: "Name"
+      },
+      ];
+    uniqueSkills.map(item => {
+        headCells.push({
+            id: item,
+            numeric: true,
+            disablePadding: false,
+            label: item
+            })
+    })
+    headCells.push({
         id: "total_points",
         numeric: true,
         disablePadding: false,
         label: "Total"
-        }
-    ];
-
-function EnhancedTableHead(props) {
-    const { order, orderBy, onRequestSort } = props;
-    const createSortHandler = (property) => (event) => {
-    onRequestSort(event, property);
-    };
+    })
 
     return (
     <TableHead >
@@ -138,7 +108,8 @@ EnhancedTableHead.propTypes = {
 onRequestSort: PropTypes.func.isRequired,
 order: PropTypes.oneOf(["asc", "desc"]).isRequired,
 orderBy: PropTypes.string.isRequired,
-rowCount: PropTypes.number.isRequired
+rowCount: PropTypes.number.isRequired,
+uniqueSkills: PropTypes.array.isRequired,
 };
 
 
@@ -150,6 +121,7 @@ export default function EnhancedTable({ children, ...props }) {
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
     const rows = props.rows;
+    const uniqueSkills = props.uniqueSkills;
   
     const handleRequestSort = (event, property) => {
       const isAsc = orderBy === property && order === "asc";
@@ -192,6 +164,7 @@ export default function EnhancedTable({ children, ...props }) {
               aria-labelledby="tableTitle"
             >
               <EnhancedTableHead
+                uniqueSkills={uniqueSkills}
                 numSelected={selected.length}
                 order={order}
                 orderBy={orderBy}
@@ -232,10 +205,14 @@ export default function EnhancedTable({ children, ...props }) {
                         >
                           {row.username}
                         </TableCell>
-                        <TableCell align="right" >{row.Developer}</TableCell>
-                        <TableCell align="right" >{row.Writer}</TableCell>
-                        <TableCell align="right" >{row.Designer}</TableCell>
-                        <TableCell align="right" >{row.Strategy}</TableCell>
+                        {uniqueSkills.map(item => {
+                            return (
+                                // eslint-disable-next-line react/jsx-key
+                                <TableCell align="right">
+                                    {row[item]}
+                                </TableCell>
+                            )
+                        })}
                         <TableCell align="right">{row.total_points}XP</TableCell>
                       </TableRow>
                     );
