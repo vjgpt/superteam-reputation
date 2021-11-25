@@ -5,7 +5,8 @@ import styles from '../../styles/Home.module.css'
 export const getStaticPaths = async () => {
   const paths = [
     { params: { id: "6b531bc0f091468a864e8ce334818331" } },
-    { params: { id: "e4cb2289279e4d788f278f54709afed0"} },
+    { params: { id: "e4cb2289279e4d788f278f54709afed0"} }, 
+    { params: { id: "845963b6e2ee4bd69c6a84875d4b9494"} },
   ];
   return { paths, fallback: false };
 };
@@ -28,30 +29,6 @@ export const getStaticProps = async (context) => {
     id,
   }
 
-  // const database_detail = "Reputation System"
-
-  // const dbname = "DATABASE"
-  // const dbname = database_detail.results.map(item => {
-  //   let name = ""
-  //   if (item.id == id) {
-  //     name = item.title.plain_text
-  //   }
-  //   return {
-  //     ...name
-  //   }
-  // })
-  // for(let i = 0; i < database_detail.results.length; i++){
-  //   if(database_detail[i].name === "Total"){
-  //     const total = database_detail[i].value;
-  //     project.total = total;
-  //   }
-  // }
-  // const database_name = () => database_detail.results.map(item => {
-  //   if (item.id == id) {
-  //     return item.title.plain_text
-  //   }
-  // });
-
   return {
     props: {
       project,
@@ -67,17 +44,9 @@ const Projects = ({ project}) => {
     database_detail = "Reputation System"
   } else if (dbId === "e4cb2289279e4d788f278f54709afed0") {
     database_detail = "Member NFT"
+  } else if (dbId === "845963b6e2ee4bd69c6a84875d4b9494") {
+    database_detail = "BIP Implementation"
   }
-
-  // const database_detail_name = database_detail.results.map(item => {
-  //   let name = ""
-  //   if (item.id == project.id) {
-  //     name = item.title.plain_text
-  //   }
-  //   return {
-  //     ...name
-  //   }
-  // })
 
     const data = project;
     let total_skills = [];
@@ -86,18 +55,18 @@ const Projects = ({ project}) => {
       let result_list = {}
       result_list.id = item.id
       result_list.username = item.properties.Assignee.select.name
-      result_list.points = item.properties.Points.number
+      result_list.points = item.properties.Points.formula.number
   
       if (item.properties.Skill != undefined && item.properties.Skill.multi_select.length > 0) {
         let skill_list = []
         for (let i = 0; i < item.properties.Skill.multi_select.length; i++) {
-          result_list[item.properties.Skill.multi_select[i].name] = item.properties.Points.number
+          result_list[item.properties.Skill.multi_select[i].name] = item.properties.Points.formula.number
           skill_list.push(item.properties.Skill.multi_select[i].name)
           total_skills.push(item.properties.Skill.multi_select[i].name)
         }
         result_list.skills = skill_list
       }
-      result_list.total_points = item.properties.Points.number
+      result_list.total_points = item.properties.Points.formula.number
       result_list.timestamp = item.last_edited_time
   
       return {

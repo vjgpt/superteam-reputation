@@ -27,17 +27,17 @@ export default function Home({ data }) {
         let result_list = {}
         result_list.id = item.id
         result_list.username = item.properties.Assignee.select.name
-        result_list.points = item.properties.Points.number
+        result_list.points = item.properties.Points.formula.number
     
         if (item.properties.Skill != undefined && item.properties.Skill.multi_select.length > 0) {
           let skill_list = []
           for (let i = 0; i < item.properties.Skill.multi_select.length; i++) {
-            result_list[item.properties.Skill.multi_select[i].name] = item.properties.Points.number
+            result_list[item.properties.Skill.multi_select[i].name] = item.properties.Points.formula.number
             skill_list.push(item.properties.Skill.multi_select[i].name)
           }
           result_list.skills = skill_list
         }
-        result_list.total_points = item.properties.Points.number
+        result_list.total_points = item.properties.Points.formula.number
         result_list.timestamp = item.last_edited_time
         notionData.push(result_list)
         return {
@@ -169,6 +169,10 @@ export async function getStaticProps() {
     {
       id: "e4cb2289279e4d788f278f54709afed0",
       name: "Member NFT"
+    },
+    {
+      id: "845963b6e2ee4bd69c6a84875d4b9494",
+      name: "BIP Implementation"
     }
   ]
   const projectFilterCondition = {
