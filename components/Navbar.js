@@ -30,6 +30,7 @@ export default function Navbar() {
                     <Link href="/project/6b531bc0f091468a864e8ce334818331"><a className="dropdown-item" >Reputation System</a></Link>
                     <Link href="/project/e4cb2289279e4d788f278f54709afed0"><a className="dropdown-item" >Member NFT</a></Link>
                     <Link href="/project/845963b6e2ee4bd69c6a84875d4b9494"><a className="dropdown-item" >BIP Implementation</a></Link>
+                    <Link href="/project/3ce34decd6154e80a5002c1c79125712"><a className="dropdown-item" >Phantasia Video</a></Link>
                     </div>
                 </li>
             </ul>

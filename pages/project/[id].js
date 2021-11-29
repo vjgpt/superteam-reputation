@@ -7,6 +7,7 @@ export const getStaticPaths = async () => {
     { params: { id: "6b531bc0f091468a864e8ce334818331" } },
     { params: { id: "e4cb2289279e4d788f278f54709afed0"} }, 
     { params: { id: "845963b6e2ee4bd69c6a84875d4b9494"} },
+    { params: { id: "3ce34decd6154e80a5002c1c79125712"} },
   ];
   return { paths, fallback: false };
 };
@@ -46,11 +47,13 @@ const Projects = ({ project}) => {
     database_detail = "Member NFT"
   } else if (dbId === "845963b6e2ee4bd69c6a84875d4b9494") {
     database_detail = "BIP Implementation"
+  } else if (dbId === "3ce34decd6154e80a5002c1c79125712") {
+    database_detail = "Phantasia Video"
   }
 
     const data = project;
     let total_skills = [];
-    let uniqueSkills = ['Developer','Writer','Designer','Strategy']
+    let uniqueSkills = ['Developer','Writer','Designer','Strategy','Videography']
     const notionData = data.results.map(item => {
       let result_list = {}
       result_list.id = item.id

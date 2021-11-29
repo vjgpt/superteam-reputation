@@ -7,7 +7,7 @@ import getNotionData from './api/notionData';
 export default function Home({ data }) {
 
   let notionData = []
-  let uniqueSkills = ['Developer','Writer','Designer','Strategy','DAO Ops']
+  let uniqueSkills = ['Developer','Writer','Designer','Strategy','DAO Ops','Videography']
   
   data['bounty'].forEach(item => {
     item.results.forEach(element => {
@@ -173,6 +173,10 @@ export async function getStaticProps() {
     {
       id: "845963b6e2ee4bd69c6a84875d4b9494",
       name: "BIP Implementation"
+    },
+    {
+      id: "3ce34decd6154e80a5002c1c79125712",
+      name: "Phantsia Video"
     }
   ]
   const projectFilterCondition = {
