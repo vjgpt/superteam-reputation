@@ -46,7 +46,8 @@ export default function Home({ data }) {
       }
       )})
 
-    data['community'].results.map(element => {
+    data['community'].forEach(item => {
+      item.results.map(element => {
         let result_list = {}
         const skill = element.properties.Skill.multi_select[0].name
         result_list.id = element.id
@@ -55,8 +56,8 @@ export default function Home({ data }) {
         result_list[skill] = element.properties.XP.formula.number
         result_list.timestamp = element.last_edited_time
         notionData.push(result_list)
-      }
-      )
+      })
+    })
 
 
       const data_list = notionData.map(item => {
@@ -197,10 +198,14 @@ export async function getStaticProps() {
   }))
   
   const communityDetails = [{
-      id: "e9721f1938f0447aa0a3eedcfdaed726",
-      name: "Community Board"
-    },
-  ]
+    id: "e9721f1938f0447aa0a3eedcfdaed726",
+    name: "Brain Trust",
+  },
+  {
+    id: "4c500329bb1949e794882f7be90a5f64",
+    name: "Community Board"
+  }
+]
   const communityfilterCondition = {
     or: [
       {
@@ -211,10 +216,10 @@ export async function getStaticProps() {
       }
     ],
   }
-  let commsData = ''
+  const commsData = []
   const asyncCommsRes = await Promise.all( communityDetails.map(async item => {
-    const data = await getNotionData(item.id, filterCondition);
-    commsData = data
+    const data = await getNotionData(item.id, communityfilterCondition);
+    commsData.push({...data})
   }))
   
 

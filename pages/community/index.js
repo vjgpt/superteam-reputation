@@ -5,8 +5,12 @@ import styles from '../../styles/Home.module.css'
 export const getStaticProps = async (context) => {
   const dbDetails = [{
     id: "e9721f1938f0447aa0a3eedcfdaed726",
-    name: "Community Board"
+    name: "Brain Trust",
   },
+  {
+    id: "4c500329bb1949e794882f7be90a5f64",
+    name: "Community Board"
+  }
 ]
   const filterCondition = {
     or: [
@@ -19,10 +23,10 @@ export const getStaticProps = async (context) => {
     ],
   }
 
-  let projectData = ''
+  const projectData = []
   const asyncRes = await Promise.all( dbDetails.map(async item => {
     const data = await getNotionData(item.id, filterCondition);
-    projectData = data
+    projectData.push({...data})
   }))
   
   return {
@@ -35,9 +39,10 @@ export const getStaticProps = async (context) => {
 
 const Projects = ({ projectData }) => {
   let notionData = []
-  let uniqueSkills = ['DAO Ops','Community']
+  let uniqueSkills = ['DAO Ops','Community', 'Developer']
 
-  projectData.results.map(element => {
+  projectData.forEach(item => {
+    item.results.map(element => {
     let result_list = {}
     const skill = element.properties.Skill.multi_select[0].name
     result_list.id = element.id
@@ -46,8 +51,8 @@ const Projects = ({ projectData }) => {
     result_list[skill] = element.properties.XP.formula.number
     result_list.timestamp = element.last_edited_time
     notionData.push(result_list)
-  }
-  )
+    })
+  })
 
     const data_list = notionData.map(item => {
       let data = []
