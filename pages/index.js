@@ -24,24 +24,35 @@ export default function Home({ data }) {
 
     data['project'].forEach(element => {
       element.results.forEach(item => {
-        let result_list = {}
-        result_list.id = item.id
-        result_list.username = item.properties.Assignee.select.name
-        result_list.points = item.properties.Points.formula.number
-    
-        if (item.properties.Skill != undefined && item.properties.Skill.multi_select.length > 0) {
-          let skill_list = []
-          for (let i = 0; i < item.properties.Skill.multi_select.length; i++) {
-            result_list[item.properties.Skill.multi_select[i].name] = item.properties.Points.formula.number
-            skill_list.push(item.properties.Skill.multi_select[i].name)
-          }
-          result_list.skills = skill_list
+        // Fetch list of assignees
+        const total_assignees = item.properties.Assignee.multi_select.length
+        let assignee_list = []
+        for (let i = 0; i < total_assignees; i++) {
+          assignee_list.push(item.properties.Assignee.multi_select[i].name)
         }
-        result_list.total_points = item.properties.Points.formula.number
-        result_list.timestamp = item.last_edited_time
-        notionData.push(result_list)
-        return {
-          ...result_list  
+
+        // Add details to assignee list
+        for (let i = 0; i < total_assignees; i++) {
+          let assignee_detail = {}
+          
+          assignee_detail.id = item.id
+          assignee_detail.username = item.properties.Assignee.multi_select[i].name
+          
+          // Fetch list of skills
+          if (item.properties.Skill != undefined && item.properties.Skill.multi_select.length > 0) {
+            let skill_list = []
+            for (let i = 0; i < item.properties.Skill.multi_select.length; i++) {
+              assignee_detail[item.properties.Skill.multi_select[i].name] = item.properties.Points.formula.number
+              skill_list.push(item.properties.Skill.multi_select[i].name)
+            }
+            assignee_detail.skills = skill_list
+          } else {
+            continue
+          }
+          assignee_detail.total_points = item.properties.Points.formula.number
+          assignee_detail.timestamp = item.last_edited_time
+
+          notionData.push(assignee_detail)
         }
       }
       )})
@@ -49,11 +60,19 @@ export default function Home({ data }) {
     data['community'].forEach(item => {
       item.results.map(element => {
         let result_list = {}
-        const skill = element.properties.Skill.multi_select[0].name
+
+        // check if skill  is empty
+        if (element.properties.Skill != undefined && element.properties.Skill.multi_select.length > 0) {
+          const skill = element.properties.Skill.multi_select[0].name
+          result_list[skill] = element.properties.XP.formula.number
+        } else {
+          return;
+        }
+        
         result_list.id = element.id
         result_list.username = element.properties.Name.title[0].plain_text
         result_list.total_points = element.properties.XP.formula.number
-        result_list[skill] = element.properties.XP.formula.number
+        
         result_list.timestamp = element.last_edited_time
         notionData.push(result_list)
       })
@@ -178,7 +197,11 @@ export async function getStaticProps() {
     {
       id: "3ce34decd6154e80a5002c1c79125712",
       name: "Phantsia Video"
-    }
+    },
+    {
+      id: "0d143ef1e8674d96a686c31c399c423e",
+      name: "Web2 to Web3 Education"
+    },
   ]
   const projectFilterCondition = {
     or: [

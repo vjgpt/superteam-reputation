@@ -44,11 +44,19 @@ const Projects = ({ projectData }) => {
   projectData.forEach(item => {
     item.results.map(element => {
     let result_list = {}
-    const skill = element.properties.Skill.multi_select[0].name
+
+    // check if skill is empty or not and add points to it
+    if (element.properties.Skill != undefined && element.properties.Skill.multi_select.length > 0) {
+      const skill = element.properties.Skill.multi_select[0].name
+      result_list[skill] = element.properties.XP.formula.number
+    } else {
+      return;
+    }
+    
     result_list.id = element.id
     result_list.username = element.properties.Name.title[0].plain_text
     result_list.total_points = element.properties.XP.formula.number
-    result_list[skill] = element.properties.XP.formula.number
+    
     result_list.timestamp = element.last_edited_time
     notionData.push(result_list)
     })
