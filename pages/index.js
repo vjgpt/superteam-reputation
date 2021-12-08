@@ -35,7 +35,7 @@ export default function Home({ data }) {
         for (let i = 0; i < total_assignees; i++) {
           let assignee_detail = {}
           
-          assignee_detail.id = item.id
+          assignee_detail.id = item.id + "_" + i
           assignee_detail.username = item.properties.Assignee.multi_select[i].name
           
           // Fetch list of skills

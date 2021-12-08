@@ -56,7 +56,7 @@ const Projects = ({ project}) => {
   }
 
     const data = project;
-    let notionData = []
+    const notionData = []
     let uniqueSkills = ['Developer','Writer','Designer','Strategy','Videography']
 
     data.results.map(item => {
@@ -71,7 +71,7 @@ const Projects = ({ project}) => {
       for (let i = 0; i < total_assignees; i++) {
         let assignee_detail = {}
         
-        assignee_detail.id = item.id
+        assignee_detail.id = item.id + "_" + i
         assignee_detail.username = item.properties.Assignee.multi_select[i].name
         
         // Fetch list of skills
