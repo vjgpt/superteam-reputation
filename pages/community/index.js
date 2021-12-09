@@ -10,7 +10,11 @@ export const getStaticProps = async (context) => {
   {
     id: "4c500329bb1949e794882f7be90a5f64",
     name: "Community Board"
-  }
+  },
+  {
+    id: "24ac88db658748429cdf04e247792ea7",
+    name: "Misc Community Work" 
+  },
 ]
   const filterCondition = {
     or: [
