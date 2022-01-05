@@ -12,7 +12,7 @@ import TableRow from "@mui/material/TableRow";
 import TableSortLabel from "@mui/material/TableSortLabel";
 import { visuallyHidden } from "@mui/utils";
 import Avatar from '@mui/material/Avatar';
-import TopRanking from "../components/TopRanking"
+import TopRanking from "../components/TopRanking";
 
 function descendingComparator(a, b, orderBy) {
     if (b[orderBy] < a[orderBy]) {
@@ -64,14 +64,14 @@ function EnhancedTableHead(props) {
             numeric: true,
             disablePadding: false,
             label: item
-            })
-    })
+            });
+    });
     headCells.push({
         id: "total_points",
         numeric: true,
         disablePadding: false,
         label: "Total"
-    })
+    });
 
     return (
     <TableHead >
@@ -200,6 +200,7 @@ export default function EnhancedTable({ children, ...props }) {
                         <TableCell
                           component="th"
                           id={labelId}
+                          key={row.id}
                           scope="row"
                           padding="normal"
                         >
@@ -217,11 +218,11 @@ export default function EnhancedTable({ children, ...props }) {
                       </TableRow>
                     );
                   })}
-                {emptyRows > 0 && (
+                {/* {emptyRows > 0 && (
                   <TableRow>
-                    <TableCell colSpan={6} />
+                    <TableCell colSpan={7} />
                   </TableRow>
-                )}
+                )} */}
               </TableBody>
             </Table>
           </TableContainer>

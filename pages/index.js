@@ -1,122 +1,123 @@
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import Image from 'next/image';
+import styles from '../styles/Home.module.css';
 import * as React from 'react';
 import EnhancedTable from '../components/Leaderboard';
 import getNotionData from './api/notionData';
 
 export default function Home({ data }) {
 
-  let notionData = []
-  let uniqueSkills = ['Developer','Writer','Designer','Strategy','DAO Ops','Videography']
+  let notionData = [];
+  let uniqueSkills = ['Developer','Writer','Designer','Strategy','DAO Ops','Videography'];
   
-  data['bounty'].forEach(item => {
+  data.bounty.forEach(item => {
     item.results.forEach(element => {
-      let result_list = {}
-      const skill = element.properties.Skill.select.name
-      result_list.id = element.id
-      result_list.username = element.properties.Name.title[0].plain_text
-      result_list.total_points = element.properties.Total.formula.number
-      result_list[skill] = element.properties.Total.formula.number
-      result_list.timestamp = element.last_edited_time
-      notionData.push(result_list)
-    }
-    )})
+      let result_list = {};
+      const skill = element.properties.Skill.select.name;
+      result_list.id = element.id;
+      result_list.username = element.properties.Name.title[0].plain_text;
+      result_list.total_points = element.properties.Total.formula.number;
+      result_list[skill] = element.properties.Total.formula.number;
+      result_list.timestamp = element.last_edited_time;
+      notionData.push(result_list);
+    });
+  });
 
-    data['project'].forEach(element => {
+    data.project.forEach(element => {
       element.results.forEach(item => {
         // Fetch list of assignees
-        const total_assignees = item.properties.Assignee.multi_select.length
-        let assignee_list = []
+        const total_assignees = item.properties.Assignee.multi_select.length;
+        let assignee_list = [];
         for (let i = 0; i < total_assignees; i++) {
-          assignee_list.push(item.properties.Assignee.multi_select[i].name)
+          assignee_list.push(item.properties.Assignee.multi_select[i].name);
         }
 
         // Add details to assignee list
         for (let i = 0; i < total_assignees; i++) {
-          let assignee_detail = {}
+          let assignee_detail = {};
           
-          assignee_detail.id = item.id + "_" + i
-          assignee_detail.username = item.properties.Assignee.multi_select[i].name
+          assignee_detail.id = item.id + "_" + i;
+          assignee_detail.username = item.properties.Assignee.multi_select[i].name;
           
           // Fetch list of skills
           if (item.properties.Skill != undefined && item.properties.Skill.multi_select.length > 0) {
-            let skill_list = []
+            let skill_list = [];
             for (let i = 0; i < item.properties.Skill.multi_select.length; i++) {
-              assignee_detail[item.properties.Skill.multi_select[i].name] = item.properties.Points.formula.number
-              skill_list.push(item.properties.Skill.multi_select[i].name)
+              assignee_detail[item.properties.Skill.multi_select[i].name] = item.properties.Points.formula.number;
+              skill_list.push(item.properties.Skill.multi_select[i].name);
             }
-            assignee_detail.skills = skill_list
+            assignee_detail.skills = skill_list;
           } else {
-            continue
+            continue;
           }
-          assignee_detail.total_points = item.properties.Points.formula.number
-          assignee_detail.timestamp = item.last_edited_time
+          assignee_detail.total_points = item.properties.Points.formula.number;
+          assignee_detail.timestamp = item.last_edited_time;
 
-          notionData.push(assignee_detail)
+          notionData.push(assignee_detail);
         }
       }
-      )})
+    );
+  });
 
-    data['community'].forEach(item => {
+    data.community.forEach(item => {
       item.results.map(element => {
-        let result_list = {}
+        let result_list = {};
 
         // check if skill  is empty
         if (element.properties.Skill != undefined && element.properties.Skill.multi_select.length > 0) {
-          const skill = element.properties.Skill.multi_select[0].name
-          result_list[skill] = element.properties.XP.formula.number
+          const skill = element.properties.Skill.multi_select[0].name;
+          result_list[skill] = element.properties.XP.formula.number;
         } else {
           return;
         }
         
-        result_list.id = element.id
-        result_list.username = element.properties.Name.title[0].plain_text
-        result_list.total_points = element.properties.XP.formula.number
+        result_list.id = element.id;
+        result_list.username = element.properties.Name.title[0].plain_text;
+        result_list.total_points = element.properties.XP.formula.number;
         
-        result_list.timestamp = element.last_edited_time
-        notionData.push(result_list)
-      })
-    })
+        result_list.timestamp = element.last_edited_time;
+        notionData.push(result_list);
+      });
+    });
 
 
       const data_list = notionData.map(item => {
-        let data = []
-        const header =  Object.keys(item)
+        let data = [];
+        const header =  Object.keys(item);
         let difference = uniqueSkills.filter(x => !header.includes(x));
         for (let i = 0; i < difference.length; i++) {
-          data[difference[i]] = 0
+          data[difference[i]] = 0;
         }
         return {
           ...item,
           ...data
-        }
-      })
+        };
+      });
 
   const groupedData = data_list.reduce((acc, item) => {
-    const { id, username, total_points, timestamp } = item
+    const { id, username, total_points, timestamp } = item;
     const key = username.toLowerCase();
     const value = {
       ...item,
       timestamp
-    }
+    };
     if (!acc[key]) {
-      acc[key] = [value]
+      acc[key] = [value];
     } else {
-      acc[key].push(value)
+      acc[key].push(value);
     }
-    return acc
-  }, {})
+    return acc;
+  }, {});
 
   const sumGroupedData = Object.keys(groupedData).map(key => {
-    const values = groupedData[key]
-    const skill_points = {}
+    const values = groupedData[key];
+    const skill_points = {};
     for (let i = 0; i < values.length; i++) {
       for (let j = 0; j < uniqueSkills.length; j++) {
         if (values[i][uniqueSkills[j]] != undefined) {
           if (skill_points[uniqueSkills[j]] == undefined) {
-            skill_points[uniqueSkills[j]] = parseInt(values[i][uniqueSkills[j]])
+            skill_points[uniqueSkills[j]] = parseInt(values[i][uniqueSkills[j]]);
           } else {
-            skill_points[uniqueSkills[j]] += parseInt(values[i][uniqueSkills[j]])
+            skill_points[uniqueSkills[j]] += parseInt(values[i][uniqueSkills[j]]);
           }
         }
       }
@@ -128,16 +129,16 @@ export default function Home({ data }) {
       ...skill_points,
       total_points: values.reduce((acc, item) => acc + parseInt(item.total_points), 0),
       timestamp: values[0].timestamp
-    }
-  })
-  sumGroupedData.sort((a,b) => (a.total_points < b.total_points) ? 1 : -1)
+    };
+  });
+  sumGroupedData.sort((a,b) => (a.total_points < b.total_points) ? 1 : -1);
 
   return (
     
     <div className={styles.container}>
       <main className={styles.main}>
         <h1 className={styles.title}>
-          <a href="https://superteam.fun">Superteam</a> Reputation Leaderboard
+          <a href="https://superteam.fun">Superteam </a> Reputation Leaderboard
         </h1>
           {/* <p>{JSON.stringify(data)}</p> */}
         <EnhancedTable
