@@ -25,10 +25,10 @@ export default function Home({ data }) {
     data.project.forEach(element => {
       element.results.forEach(item => {
         // Fetch list of assignees
-        const total_assignees = item.properties.Assignee.multi_select.length;
+        const total_assignees = item.properties['Contributor Name'].multi_select.length;
         let assignee_list = [];
         for (let i = 0; i < total_assignees; i++) {
-          assignee_list.push(item.properties.Assignee.multi_select[i].name);
+          assignee_list.push(item.properties['Contributor Name'].multi_select[i].name);
         }
 
         // Add details to assignee list
@@ -36,20 +36,20 @@ export default function Home({ data }) {
           let assignee_detail = {};
           
           assignee_detail.id = item.id + "_" + i;
-          assignee_detail.username = item.properties.Assignee.multi_select[i].name;
+          assignee_detail.username = item.properties['Contributor Name'].multi_select[i].name;
           
           // Fetch list of skills
           if (item.properties.Skill != undefined && item.properties.Skill.multi_select.length > 0) {
             let skill_list = [];
             for (let i = 0; i < item.properties.Skill.multi_select.length; i++) {
-              assignee_detail[item.properties.Skill.multi_select[i].name] = item.properties.Points.formula.number;
+              assignee_detail[item.properties.Skill.multi_select[i].name] = item.properties.XP.formula.number;
               skill_list.push(item.properties.Skill.multi_select[i].name);
             }
             assignee_detail.skills = skill_list;
           } else {
             continue;
           }
-          assignee_detail.total_points = item.properties.Points.formula.number;
+          assignee_detail.total_points = item.properties.XP.formula.number;
           assignee_detail.timestamp = item.last_edited_time;
 
           notionData.push(assignee_detail);
@@ -184,32 +184,48 @@ export async function getStaticProps() {
 
 
   const projectDbDetails = [{
-      id: "6b531bc0f091468a864e8ce334818331",
-      name: "Reputation System"
+      id: "26c0661014d84b2eb12e6ae0eab79522",
+      name: "Start on Solana"
     },
     {
-      id: "e4cb2289279e4d788f278f54709afed0",
+      id: "245e90b6444c44b5932b28ff03b5ba53",
+      name: "Ketto"
+    },
+    {
+      id: "feadfa251c694ce1ad2a382b5de867aa",
+      name: "Node Air"
+    },
+    {
+      id: "041ff89f11804e5a844aac8b0e38abec",
+      name: "Ground Zero Phase 1"
+    },
+    {
+      id: "bbce78f6e8d245e382f7531b3c9b6ca3",
+      name: "DAO Wiki"
+    },
+    {
+      id: "365454dc2ec54010b8c0ade7060564cb",
+      name: "Reputation System v1"
+    },
+    {
+      id: "366313e791224e0ba706a1091b7764d9",
       name: "Member NFT"
     },
     {
-      id: "845963b6e2ee4bd69c6a84875d4b9494",
-      name: "BIP Implementation"
+      id: "4e75f881731849499806ca0dfc0115c9",
+      name: "MapMyDAO"
     },
     {
-      id: "3ce34decd6154e80a5002c1c79125712",
-      name: "Phantsia Video"
-    },
-    {
-      id: "0d143ef1e8674d96a686c31c399c423e",
-      name: "Web2 to Web3 Education"
+      id: "77294283221146fbbd6c7e19376c18df",
+      name: "Phantasia Video"
     },
   ]
   const projectFilterCondition = {
     or: [
       {
-        property: 'Status',
-        select: {
-          equals: 'Completed',
+        property: 'Skill',
+        multi_select: {
+          is_not_empty: true,
         },
       }
     ],

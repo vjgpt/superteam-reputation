@@ -27,11 +27,15 @@ export default function Navbar() {
                     Projects
                     </a>
                     <div className="dropdown-menu m-0" aria-labelledby="navbarDropdown">
-                    <Link href="/project/6b531bc0f091468a864e8ce334818331"><a className="dropdown-item" >Reputation System</a></Link>
-                    <Link href="/project/e4cb2289279e4d788f278f54709afed0"><a className="dropdown-item" >Member NFT</a></Link>
-                    <Link href="/project/845963b6e2ee4bd69c6a84875d4b9494"><a className="dropdown-item" >BIP Implementation</a></Link>
-                    <Link href="/project/3ce34decd6154e80a5002c1c79125712"><a className="dropdown-item" >Phantasia Video</a></Link>
-                    <Link href="/project/0d143ef1e8674d96a686c31c399c423e"><a className="dropdown-item" >Web2 to Web3 Education</a></Link>
+                    <Link href="/project/26c0661014d84b2eb12e6ae0eab79522"><a className="dropdown-item" >Start on Solana</a></Link>
+                    <Link href="/project/245e90b6444c44b5932b28ff03b5ba53"><a className="dropdown-item" >Ketto</a></Link>
+                    <Link href="/project/feadfa251c694ce1ad2a382b5de867aa"><a className="dropdown-item" >Node Air</a></Link>
+                    <Link href="/project/041ff89f11804e5a844aac8b0e38abec"><a className="dropdown-item" >Ground Zero Phase 1</a></Link>
+                    <Link href="/project/bbce78f6e8d245e382f7531b3c9b6ca3"><a className="dropdown-item" >DAO Wiki</a></Link>
+                    <Link href="/project/365454dc2ec54010b8c0ade7060564cb"><a className="dropdown-item" >Reputation System v1</a></Link>
+                    <Link href="/project/366313e791224e0ba706a1091b7764d9"><a className="dropdown-item" >Member NFT</a></Link>
+                    <Link href="/project/4e75f881731849499806ca0dfc0115c9"><a className="dropdown-item" >MapMyDAO</a></Link>
+                    <Link href="/project/77294283221146fbbd6c7e19376c18df"><a className="dropdown-item" >Phantasia Video</a></Link>
                     </div>
                 </li>
             </ul>
