@@ -7,7 +7,7 @@ import getNotionData from './api/notionData';
 export default function Home({ data }) {
 
   let notionData = [];
-  let uniqueSkills = ['Developer','Writer','Designer','Strategy','DAO Ops','Videography'];
+  let uniqueSkills = ['Developer','Writer','Designer','Strategy','DAO Ops','Video'];
   
   data.bounty.forEach(item => {
     item.results.forEach(element => {

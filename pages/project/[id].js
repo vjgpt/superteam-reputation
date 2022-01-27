@@ -72,7 +72,7 @@ const Projects = ({ project}) => {
 
     const data = project;
     const notionData = [];
-    let uniqueSkills = ['Developer','Writer','Designer','Strategy','Videography'];
+    let uniqueSkills = ['Developer','Writer','Designer','Strategy','Video'];
 
     data.results.map(item => {
       // Fetch list of assignees
