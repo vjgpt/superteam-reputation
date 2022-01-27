@@ -12,13 +12,15 @@ export default function Home({ data }) {
   data.bounty.forEach(item => {
     item.results.forEach(element => {
       let result_list = {};
-      const skill = element.properties.Skill.select.name;
-      result_list.id = element.id;
-      result_list.username = element.properties.Name.title[0].plain_text;
-      result_list.total_points = element.properties.Total.formula.number;
-      result_list[skill] = element.properties.Total.formula.number;
-      result_list.timestamp = element.last_edited_time;
-      notionData.push(result_list);
+      if ( element.properties.Skill.select != undefined ) {
+        const skill = element.properties.Skill.select.name;
+        result_list.id = element.id;
+        result_list.username = element.properties.Name.title[0].plain_text;
+        result_list.total_points = element.properties.Total.formula.number;
+        result_list[skill] = element.properties.Total.formula.number;
+        result_list.timestamp = element.last_edited_time;
+        notionData.push(result_list);
+      }
     });
   });
 
@@ -138,9 +140,8 @@ export default function Home({ data }) {
     <div className={styles.container}>
       <main className={styles.main}>
         <h1 className={styles.title}>
-          <a href="https://superteam.fun">Superteam </a> Reputation Leaderboard
+          <a href="https://superteam.fun"> Superteam </a> Reputation Leaderboard
         </h1>
-          {/* <p>{JSON.stringify(data)}</p> */}
         <EnhancedTable
           rows={sumGroupedData}
           uniqueSkills={uniqueSkills}
@@ -219,6 +220,10 @@ export async function getStaticProps() {
       id: "77294283221146fbbd6c7e19376c18df",
       name: "Phantasia Video"
     },
+    {
+      id: "94f63b4c19a34e18ab19b6aa5f762384",
+      name: "Member Onboarding Emails"
+    },
   ]
   const projectFilterCondition = {
     or: [
@@ -265,7 +270,6 @@ export async function getStaticProps() {
     const data = await getNotionData(item.id, communityfilterCondition);
     commsData.push({...data})
   }))
-  
 
   const data = {
     bounty: bountyData,
@@ -275,5 +279,5 @@ export async function getStaticProps() {
 
   // Pass data to the page via props
   return { props: { data },
-  revalidate: 10, }
+  revalidate: 60, }
 }

@@ -36,6 +36,7 @@ export default function Navbar() {
                     <Link href="/project/366313e791224e0ba706a1091b7764d9"><a className="dropdown-item" >Member NFT</a></Link>
                     <Link href="/project/4e75f881731849499806ca0dfc0115c9"><a className="dropdown-item" >MapMyDAO</a></Link>
                     <Link href="/project/77294283221146fbbd6c7e19376c18df"><a className="dropdown-item" >Phantasia Video</a></Link>
+                    <Link href="/project/94f63b4c19a34e18ab19b6aa5f762384"><a className="dropdown-item" >Member Onboarding Emails</a></Link>
                     </div>
                 </li>
             </ul>

@@ -13,6 +13,7 @@ export const getStaticPaths = async () => {
     { params: { id: "366313e791224e0ba706a1091b7764d9"} },
     { params: { id: "4e75f881731849499806ca0dfc0115c9"} },
     { params: { id: "77294283221146fbbd6c7e19376c18df"} },
+    { params: { id: "94f63b4c19a34e18ab19b6aa5f762384"} },
   ];
   return { paths, fallback: false };
 };
@@ -65,6 +66,8 @@ const Projects = ({ project}) => {
     database_detail = "MapMyDAO";
   } else if (dbId === "77294283221146fbbd6c7e19376c18df") {
     database_detail = "Phantasia Video";
+  } else if (dbId === "94f63b4c19a34e18ab19b6aa5f762384") {
+    database_detail = "Member Onboarding Emails";
   }
 
     const data = project;
@@ -159,15 +162,15 @@ const Projects = ({ project}) => {
 
   return (
     <div>
-              <main className={styles.main}>
-        <h1 className={styles.title}>
-          {database_detail}
-        </h1>
+        <main className={styles.main}>
+          <h1 className={styles.title}>
+            {database_detail}
+          </h1>
 
-        <EnhancedTable
-          rows={sumGroupedData}
-          uniqueSkills={uniqueSkills}
-          />
+          <EnhancedTable
+            rows={sumGroupedData}
+            uniqueSkills={uniqueSkills}
+            />
 
       </main>
     </div>
