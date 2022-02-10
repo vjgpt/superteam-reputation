@@ -114,7 +114,7 @@ uniqueSkills: PropTypes.array.isRequired,
 
 
 export default function EnhancedTable({ children, ...props }) {
-    const [order, setOrder] = React.useState("asc");
+    const [order, setOrder] = React.useState("desc");
     const [orderBy, setOrderBy] = React.useState("total");
     const [selected, setSelected] = React.useState([]);
     const [page, setPage] = React.useState(0);
@@ -124,8 +124,10 @@ export default function EnhancedTable({ children, ...props }) {
     const uniqueSkills = props.uniqueSkills;
   
     const handleRequestSort = (event, property) => {
-      const isAsc = orderBy === property && order === "asc";
-      setOrder(isAsc ? "desc" : "asc");
+      const isDesc = orderBy === property && order === "desc";
+      setOrder(isDesc ? "asc" : "desc");
+      // const isAsc = orderBy === property && order === "asc";
+      // setOrder(isAsc ? "desc" : "asc");
       setOrderBy(property);
     };
   
