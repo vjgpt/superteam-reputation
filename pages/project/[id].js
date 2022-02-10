@@ -70,7 +70,7 @@ const Projects = ({ project}) => {
   } else if (dbId === "94f63b4c19a34e18ab19b6aa5f762384") {
     database_detail = "Member Onboarding Emails";
   } else if (dbId === "0bf0c7016bd3476097001942bb45d5fe") {
-    database_detail = "Diswallet Phase 1";
+    database_detail = "Wagmi.bio";
   }
 
     const data = project;

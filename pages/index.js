@@ -226,7 +226,7 @@ export async function getStaticProps() {
     },
     {
       id: "0bf0c7016bd3476097001942bb45d5fe",
-      name: "Diswallet Phase 1"
+      name: "Wagmi.bio"
     },
   ]
   const projectFilterCondition = {

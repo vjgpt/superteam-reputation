@@ -37,7 +37,7 @@ export default function Navbar() {
                     <Link href="/project/4e75f881731849499806ca0dfc0115c9"><a className="dropdown-item" >MapMyDAO</a></Link>
                     <Link href="/project/77294283221146fbbd6c7e19376c18df"><a className="dropdown-item" >Phantasia Video</a></Link>
                     <Link href="/project/94f63b4c19a34e18ab19b6aa5f762384"><a className="dropdown-item" >Member Onboarding Emails</a></Link>
-                    <Link href="/project/0bf0c7016bd3476097001942bb45d5fe"><a className="dropdown-item" >Diswallet Phase 1</a></Link>
+                    <Link href="/project/0bf0c7016bd3476097001942bb45d5fe"><a className="dropdown-item" >Wagmi.bio</a></Link>
                     </div>
                 </li>
             </ul>
