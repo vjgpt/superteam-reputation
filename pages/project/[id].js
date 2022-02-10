@@ -14,6 +14,7 @@ export const getStaticPaths = async () => {
     { params: { id: "4e75f881731849499806ca0dfc0115c9"} },
     { params: { id: "77294283221146fbbd6c7e19376c18df"} },
     { params: { id: "94f63b4c19a34e18ab19b6aa5f762384"} },
+    { params: { id: "0bf0c7016bd3476097001942bb45d5fe"} },
   ];
   return { paths, fallback: false };
 };
@@ -68,6 +69,8 @@ const Projects = ({ project}) => {
     database_detail = "Phantasia Video";
   } else if (dbId === "94f63b4c19a34e18ab19b6aa5f762384") {
     database_detail = "Member Onboarding Emails";
+  } else if (dbId === "0bf0c7016bd3476097001942bb45d5fe") {
+    database_detail = "Diswallet Phase 1";
   }
 
     const data = project;

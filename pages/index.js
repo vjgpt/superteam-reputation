@@ -224,6 +224,10 @@ export async function getStaticProps() {
       id: "94f63b4c19a34e18ab19b6aa5f762384",
       name: "Member Onboarding Emails"
     },
+    {
+      id: "0bf0c7016bd3476097001942bb45d5fe",
+      name: "Diswallet Phase 1"
+    },
   ]
   const projectFilterCondition = {
     or: [
