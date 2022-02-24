@@ -15,6 +15,9 @@ export const getStaticPaths = async () => {
     { params: { id: "77294283221146fbbd6c7e19376c18df"} },
     { params: { id: "94f63b4c19a34e18ab19b6aa5f762384"} },
     { params: { id: "0bf0c7016bd3476097001942bb45d5fe"} },
+    { params: { id: "a33c24df904a4430965798eb22af75a2"} },
+    { params: { id: "0154f559b60b490c8283b53c7392fad9"} },
+    { params: { id: "043cd80f090548be8667492daadc13da"} },
   ];
   return { paths, fallback: false };
 };
@@ -71,11 +74,17 @@ const Projects = ({ project}) => {
     database_detail = "Member Onboarding Emails";
   } else if (dbId === "0bf0c7016bd3476097001942bb45d5fe") {
     database_detail = "Wagmi.bio";
+  } else if (dbId === "a33c24df904a4430965798eb22af75a2") {
+    database_detail = "Lurkers Got Talent";
+  } else if (dbId === "0154f559b60b490c8283b53c7392fad9") {
+    database_detail = "Diswallet";
+  } else if (dbId === "043cd80f090548be8667492daadc13da") {
+    database_detail = "Bounty Self Serve System";
   }
 
     const data = project;
     const notionData = [];
-    let uniqueSkills = ['Developer','Writer','Designer','Strategy','Video'];
+    let uniqueSkills = ['Developer','Writer','Designer','Strategy','DAO Ops','Video'];
 
     data.results.map(item => {
       // Fetch list of assignees

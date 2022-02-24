@@ -38,6 +38,9 @@ export default function Navbar() {
                     <Link href="/project/77294283221146fbbd6c7e19376c18df"><a className="dropdown-item" >Phantasia Video</a></Link>
                     <Link href="/project/94f63b4c19a34e18ab19b6aa5f762384"><a className="dropdown-item" >Member Onboarding Emails</a></Link>
                     <Link href="/project/0bf0c7016bd3476097001942bb45d5fe"><a className="dropdown-item" >Wagmi.bio</a></Link>
+                    <Link href="/project/a33c24df904a4430965798eb22af75a2"><a className="dropdown-item" >Lurkers Got Talent</a></Link>
+                    <Link href="/project/0154f559b60b490c8283b53c7392fad9"><a className="dropdown-item" >Diswallet</a></Link>
+                    <Link href="/project/043cd80f090548be8667492daadc13da"><a className="dropdown-item" >Bounty Self Serve System</a></Link>
                     </div>
                 </li>
             </ul>

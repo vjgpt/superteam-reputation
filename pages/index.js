@@ -228,6 +228,18 @@ export async function getStaticProps() {
       id: "0bf0c7016bd3476097001942bb45d5fe",
       name: "Wagmi.bio"
     },
+    {
+      id: "a33c24df904a4430965798eb22af75a2",
+      name: "Lurkers Got Talent"
+    },
+    {
+      id: "0154f559b60b490c8283b53c7392fad9",
+      name: "Diswallet"
+    },
+    {
+      id: "043cd80f090548be8667492daadc13da",
+      name: "Bounty Self Serve System"
+    },
   ]
   const projectFilterCondition = {
     or: [
