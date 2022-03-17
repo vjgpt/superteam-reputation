@@ -269,6 +269,10 @@ export async function getStaticProps() {
   {
     id: "24ac88db658748429cdf04e247792ea7",
     name: "Misc Community Work" 
+  },  
+  {
+    id: "688cdab741e4420380f86b9293691a6d",
+    name: "Event Organizers" 
   },
 ]
   const communityfilterCondition = {
