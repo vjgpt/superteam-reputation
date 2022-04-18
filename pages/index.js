@@ -240,6 +240,10 @@ export async function getStaticProps() {
       id: "043cd80f090548be8667492daadc13da",
       name: "Bounty Self Serve System"
     },
+    {
+      id: "4d905e90a9914c1bbcfa97e6e63d43d6",
+      name: "Rust YouTube Series"
+    },
   ]
   const projectFilterCondition = {
     or: [
