@@ -41,6 +41,7 @@ export default function Navbar() {
                     <Link href="/project/a33c24df904a4430965798eb22af75a2"><a className="dropdown-item" >Lurkers Got Talent</a></Link>
                     <Link href="/project/0154f559b60b490c8283b53c7392fad9"><a className="dropdown-item" >Diswallet</a></Link>
                     <Link href="/project/043cd80f090548be8667492daadc13da"><a className="dropdown-item" >Bounty Self Serve System</a></Link>
+                    <Link href="/project/4d905e90a9914c1bbcfa97e6e63d43d6"><a className="dropdown-item" >Rust YouTube Series</a></Link>
                     </div>
                 </li>
             </ul>
