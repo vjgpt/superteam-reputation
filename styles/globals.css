@@ -107,15 +107,3 @@ a {
   transform: rotate(-100deg);
   background: rgba(180,180,180,0.4);
 }
-
-/* .MuiButton-root{
-  color: #FFFFFF !important;
-  background: rgba(255,255,255,0.4) !important;
-  border: 0.2px solid rgba(255,255,255,0.4) !important;
-  size: 10cm;
-}
-
-.MuiStack-root{
-  background: rgba(255,255,255,0.4);
-  padding-block-start: 10% !important;
-} */
