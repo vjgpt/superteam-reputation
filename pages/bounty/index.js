@@ -26,6 +26,14 @@ export const getStaticProps = async (context) => {
   const projectData = [];
   const asyncRes = await Promise.all( dbDetails.map(async item => {
     const data = await getNotionData(item.id, filterCondition);
+    let has_more = data['has_more']
+    let next_cursor = data['next_cursor']
+    while (has_more === true) {
+      const data = await getNotionData(item.id, filterCondition, next_cursor);
+      has_more = data['has_more']
+      next_cursor = data['next_cursor']
+      projectData.push(data);
+    }
     projectData.push({...data})
   }));
   

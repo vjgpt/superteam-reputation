@@ -1,4 +1,4 @@
-export default async function getNotionData (id ,filterCondition) {
+export default async function getNotionData (id ,filterCondition, next_cursor) {
     const { Client } = require('@notionhq/client');
     // Fetch data from external API
     const notion_key = process.env.NOTION_API_KEY;
@@ -12,6 +12,7 @@ export default async function getNotionData (id ,filterCondition) {
           direction: 'descending',
         },
       ],
+      start_cursor: next_cursor,
     });
     const data = await response;
     return data;

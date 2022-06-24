@@ -179,6 +179,14 @@ export async function getStaticProps() {
   const bountyData = []
   const asyncRes = await Promise.all( bountyDbDetails.map(async item => {
     const data = await getNotionData(item.id, filterCondition);
+    let has_more = data['has_more']
+    let next_cursor = data['next_cursor']
+    while (has_more === true) {
+      const data = await getNotionData(item.id, filterCondition, next_cursor);
+      has_more = data['has_more']
+      next_cursor = data['next_cursor']
+      bountyData.push(data);
+    }
     bountyData.push({...data})
   }))
 
@@ -258,6 +266,14 @@ export async function getStaticProps() {
   const projectData = []
   const asyncProjectRes = await Promise.all( projectDbDetails.map(async item => {
     const data = await getNotionData(item.id, projectFilterCondition);
+    let has_more = data['has_more']
+    let next_cursor = data['next_cursor']
+    while (has_more === true) {
+      const data = await getNotionData(item.id, projectFilterCondition, next_cursor);
+      has_more = data['has_more']
+      next_cursor = data['next_cursor']
+      projectData.push({...data});
+    }
     projectData.push({...data})
   }))
   
@@ -291,6 +307,14 @@ export async function getStaticProps() {
   const commsData = []
   const asyncCommsRes = await Promise.all( communityDetails.map(async item => {
     const data = await getNotionData(item.id, communityfilterCondition);
+    let has_more = data['has_more']
+    let next_cursor = data['next_cursor']
+    while (has_more === true) {
+      const data = await getNotionData(item.id, communityfilterCondition, next_cursor);
+      has_more = data['has_more']
+      next_cursor = data['next_cursor']
+      commsData.push(data);
+    }
     commsData.push({...data})
   }))
 
