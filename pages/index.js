@@ -251,6 +251,14 @@ export async function getStaticProps() {
       id: "4d905e90a9914c1bbcfa97e6e63d43d6",
       name: "Rust YouTube Series"
     },
+    {
+      id: "9a80e006cb044a159e3c52894d911795",
+      name: "Anita's NFT Project"
+    },
+    {
+      id: "c0afb7d94ad048d790796b66a72ff792",
+      name: "Attend.bio"
+    }
   ]
   const projectFilterCondition = {
     or: [

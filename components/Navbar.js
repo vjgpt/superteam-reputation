@@ -3,7 +3,7 @@ import Link from 'next/link'
 export default function Navbar() {
     return (
         <nav className="navbar navbar-expand-lg navbar-light">
-        <Link href="https:/superteam.fun"><a className="navbar-brand" >Superteam</a></Link>
+        <Link href="https://superteam.fun"><a className="navbar-brand" >Superteam</a></Link>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
         </button>
@@ -42,6 +42,8 @@ export default function Navbar() {
                     <Link href="/project/0154f559b60b490c8283b53c7392fad9"><a className="dropdown-item" >Diswallet</a></Link>
                     <Link href="/project/043cd80f090548be8667492daadc13da"><a className="dropdown-item" >Bounty Self Serve System</a></Link>
                     <Link href="/project/4d905e90a9914c1bbcfa97e6e63d43d6"><a className="dropdown-item" >Rust YouTube Series</a></Link>
+                    <Link href="/project/9a80e006cb044a159e3c52894d911795"><a className="dropdown-item" >Anita&apos;s NFT Project</a></Link>
+                    <Link href="/project/c0afb7d94ad048d790796b66a72ff792"><a className="dropdown-item" >Attend.bio</a></Link>
                     </div>
                 </li>
             </ul>

@@ -19,6 +19,8 @@ export const getStaticPaths = async () => {
     { params: { id: "0154f559b60b490c8283b53c7392fad9"} },
     { params: { id: "043cd80f090548be8667492daadc13da"} },
     { params: { id: "4d905e90a9914c1bbcfa97e6e63d43d6"} },
+    { params: { id: "9a80e006cb044a159e3c52894d911795"} },
+    { params: { id: "c0afb7d94ad048d790796b66a72ff792"} },
   ];
   return { paths, fallback: false };
 };
@@ -83,6 +85,10 @@ const Projects = ({ project}) => {
     database_detail = "Bounty Self Serve System";
   } else if (dbId === "4d905e90a9914c1bbcfa97e6e63d43d6") {
     database_detail = "Rust YouTube Series";
+  } else if (dbId === "9a80e006cb044a159e3c52894d911795") {
+    database_detail = "Anita's NFT Project";
+  } else if (dbId === "c0afb7d94ad048d790796b66a72ff792") {
+    database_detail = "Attend.bio";
   }
 
     const data = project;
