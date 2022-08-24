@@ -2,6 +2,7 @@ import styles from '../styles/Home.module.css';
 import * as React from 'react';
 import { getLeaderboardData } from '../lib/utils';
 import EnhancedTable from '../components/Leaderboard';
+import { getIndieRecordsFunction, getCommunityRecordsFunction, getProjectsWorkRecordsFunction, getProjectTitleFunction } from '../lib/airtable';
 
 export default function Home(props) {
 
@@ -50,10 +51,10 @@ export default function Home(props) {
 }
 
 export async function getStaticProps () {
-  const projectData = await fetch(`${process.env.API_URL}/api/airtableData?query=projects`);
-  const projectDataJson = await projectData.json();
-  const indieData = await fetch(`${process.env.API_URL}/api/airtableData?query=indie`);
-  const indieDataJson = await indieData.json();
+  const projectDataJson = await getProjectsWorkRecordsFunction();
+ 
+  const indieDataJson = await getIndieRecordsFunction();
+
 
   return {
     props: {
