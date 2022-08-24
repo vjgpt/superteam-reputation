@@ -8,14 +8,11 @@ export default function Navbar() {
             <span className="navbar-toggler-icon"></span>
         </button>
 
-        <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
+        {/* <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul className="navbar-nav mr-auto mt-3 mt-lg-0">
                 <li className="nav-item active">
                 <Link href="/"><a className="nav-link" >Leaderboard</a></Link>
                 </li>
-                {/* <li className="nav-item">
-                <Link href="/dashboard"><a className="nav-link" >Dashboard</a></Link>
-                </li> */}
                 <li className="nav-item">
                 <Link href="/bounty"><a className="nav-link" >Bounty Board</a></Link>
                 </li>
@@ -47,7 +44,7 @@ export default function Navbar() {
                     </div>
                 </li>
             </ul>
-        </div>
+        </div> */}
         </nav>
     )
 }
