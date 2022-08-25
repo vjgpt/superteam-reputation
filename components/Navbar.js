@@ -8,15 +8,15 @@ export default function Navbar() {
             <span className="navbar-toggler-icon"></span>
         </button>
 
-        {/* <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul className="navbar-nav mr-auto mt-3 mt-lg-0">
                 <li className="nav-item active">
                 <Link href="/"><a className="nav-link" >Leaderboard</a></Link>
                 </li>
                 <li className="nav-item">
-                <Link href="/bounty"><a className="nav-link" >Bounty Board</a></Link>
+                <Link href="/indie"><a className="nav-link" >Indie Work</a></Link>
                 </li>
-                <li className="nav-item">
+                {/* <li className="nav-item">
                 <Link href="/community"><a className="nav-link" >Community</a></Link>
                 </li>
                 <li className="nav-item dropdown ">
@@ -42,9 +42,9 @@ export default function Navbar() {
                     <Link href="/project/9a80e006cb044a159e3c52894d911795"><a className="dropdown-item" >Anita&apos;s NFT Project</a></Link>
                     <Link href="/project/c0afb7d94ad048d790796b66a72ff792"><a className="dropdown-item" >Attend.bio</a></Link>
                     </div>
-                </li>
+                </li> */}
             </ul>
-        </div> */}
+        </div>
         </nav>
     )
 }

@@ -1,8 +1,8 @@
-import styles from '../styles/Home.module.css';
+import styles from '../../styles/Home.module.css';
 import * as React from 'react';
-import { getLeaderboardData } from '../lib/utils';
-import EnhancedTable from '../components/Leaderboard';
-import { getIndieRecordsFunction, getCommunityRecordsFunction, getProjectsWorkRecordsFunction, getProjectTitleFunction } from '../lib/airtable';
+import { getLeaderboardData } from '../../lib/utils';
+import EnhancedTable from '../../components/Leaderboard';
+import { getIndieRecordsFunction, getCommunityRecordsFunction, getProjectsWorkRecordsFunction, getProjectTitleFunction } from '../../lib/airtable';
 
 export default function Home(props) {
 
@@ -62,14 +62,11 @@ export default function Home(props) {
 }
 
 export async function getStaticProps () {
-  const projectDataJson = await getProjectsWorkRecordsFunction();
- 
   const indieDataJson = await getIndieRecordsFunction();
 
 
   return {
     props: {
-      projectDataJson,
       indieDataJson,
     },
     revalidate: 30,

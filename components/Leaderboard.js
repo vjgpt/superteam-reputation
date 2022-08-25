@@ -76,7 +76,13 @@ function EnhancedTableHead(props) {
     return (
     <TableHead >
         <TableRow >
-        <TableCell padding="none" size="small">
+        <TableCell
+          padding="none"
+          size="small"
+          // keep this cell on the left side of the table
+          align="left"
+          style={ { width: "30px" } }
+          >
         </TableCell>
         {headCells.map((headCell) => (
             <TableCell
@@ -84,6 +90,19 @@ function EnhancedTableHead(props) {
             align={headCell.numeric ? "right" : "left"}
             padding={"normal"}
             sortDirection={orderBy === headCell.id ? order : false}
+            // make the first column fixed on the left side even if you scroll it horizontally
+            style={{
+                width: "100px",
+                height: "100px",
+                overflow: "hidden",
+                whiteSpace: "nowrap",
+                textOverflow: "ellipsis",
+                fontSize: "12px",
+                fontWeight: "bold",
+                color: "#000",
+                textAlign: "center",
+                verticalAlign: "middle",
+            }}
             >
             <TableSortLabel
                 active={orderBy === headCell.id}
