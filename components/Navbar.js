@@ -3,7 +3,9 @@ import Link from 'next/link'
 export default function Navbar() {
     return (
         <nav className="navbar navbar-expand-lg navbar-light">
-        <Link href="https://superteam.fun"><a className="navbar-brand" >Superteam</a></Link>
+        <Link href="https://superteam.fun"><img className="navbar-brand" src="favicon.ico" width={45} height={50} alt="superteam logo"
+            style={{borderRadius: '50%', cursor: 'pointer'}}
+        /></Link>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
         </button>
