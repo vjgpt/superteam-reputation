@@ -1,4 +1,9 @@
-import { getIndieRecordsFunction, getCommunityRecordsFunction, getProjectsWorkRecordsFunction, getProjectTitleFunction } from "../../lib/airtable";
+import { getIndieRecordsFunction, 
+        getCommunityRecordsFunction, 
+        getProjectsWorkRecordsFunction, 
+        getProjectTitleFunction,
+        getBountiesRecordsFunction 
+      } from "../../lib/airtable";
 
 const getIndieRecordsApi = async (req, res) => {
 
@@ -81,6 +86,9 @@ export default async function handler(req, res) {
       break;
     case "projects":
       await getProjectsRecordsApi(req, res);
+      break;
+    case "bounties":
+      await getBountiesRecordsFunction(req, res);
       break;
     // case "project":
     //   await getProjectTitle(req, res);
