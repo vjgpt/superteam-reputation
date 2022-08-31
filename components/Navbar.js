@@ -5,11 +5,15 @@ import Image from 'next/image'
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export default function Navbar(props) {
+    
+    const { data , error } = useSWR('/api/airtableData/?query=title', fetcher)
+    if (!data) return "Loading..";
+    if (error) return "Failed to load";
 
-    const { data, error } = useSWR('/api/airtableData/?query=projects', fetcher)
-    if (error) return "An error has occurred.";
-
-    const projectIds = data && Object.keys(data) || [];
+    const { cabs, projects } = data;
+    const projectIds = projects || [];
+    
+    const cabIds = cabs  || [];
     
     return (
         <nav className="navbar navbar-expand-lg navbar-light">
@@ -38,6 +42,18 @@ export default function Navbar(props) {
                     <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                         {projectIds.map(id => (
                             <Link key={id} href={`/project/${id.replace(/ /g, '_').toLowerCase()}`}>
+                                <a className="dropdown-item">{id}</a>
+                            </Link>
+                        ))}
+                    </div>
+                </li>
+                <li className="nav-item dropdown">
+                    <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    CAB & SubDAO
+                    </a>
+                    <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                        {cabIds.map(id => (
+                            <Link key={id} href={`/cab/${id.replace(/ /g, '_').toLowerCase()}`}>
                                 <a className="dropdown-item">{id}</a>
                             </Link>
                         ))}

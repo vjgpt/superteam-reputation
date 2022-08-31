@@ -2,12 +2,12 @@ import styles from '../../styles/Home.module.css';
 import * as React from 'react';
 import { getLeaderboardData, transformLeaderboardData } from '../../lib/utils';
 import EnhancedTable from '../../components/Leaderboard';
-import { getProjectsWorkRecordsFunction } from '../../lib/airtable';
+import { getCabsRecordsFunction, getProjectsWorkRecordsFunction } from '../../lib/airtable';
 
-const Projects = (project) => {
-  const { projectDataJson, projectName  } = project;
+const Cabs = (project) => {
+  const { cabDataJson, cabName } = project;
 
-  const leaderboardData = getLeaderboardData(projectDataJson, undefined);
+  const leaderboardData = getLeaderboardData(cabDataJson, undefined, undefined);
 
   const { skills, leaderboardDataWithSkills } = transformLeaderboardData(leaderboardData);
 
@@ -15,7 +15,7 @@ const Projects = (project) => {
     <div className={styles.container}>
       <main className={styles.main}>
         <h1 className={styles.title}>
-          {projectName}
+          {cabName}
         </h1>
         <EnhancedTable
           rows={leaderboardDataWithSkills}
@@ -26,49 +26,49 @@ const Projects = (project) => {
   )
 }
 
-export default Projects;
+export default Cabs;
 
 
-function convertProjectNameToId(projectIds) {
-  const pathsWithProjects = projectIds.map(id => ({
+function convertCabNameToId(cabIds) {
+  const pathsWithProjects = cabIds.map(id => ({
     params: { name: id.replace(/ /g, '_').toLowerCase() },
   }));
   return pathsWithProjects;
 }
 
 export const getStaticPaths = async () => {
-  const projects = await getProjectsWorkRecordsFunction();
-  const projectIds = Object.keys(projects);
-  const paths = convertProjectNameToId(projectIds);
-
+  const projects = await getCabsRecordsFunction();
+  const cabIds = Object.keys(projects);
+  const paths = convertCabNameToId(cabIds);
+  console.log(paths);
   return { paths, fallback: false };
 };
 
 export const getStaticProps = async (context) => {
   const name = context.params.name;
-  const projectDataJson = await getProjectsWorkRecordsFunction();
-  const projectIds = Object.keys(projectDataJson);
-  const paths = convertProjectNameToId(projectIds);
+  const cabDataJson = await getCabsRecordsFunction();
+  const cabIds = Object.keys(cabDataJson);
+  const paths = convertCabNameToId(cabIds);
   
   const hasPath = paths.findIndex(path => path.params.name === name);
 
   if (hasPath > -1) {
     const projectData = {
-      [name]: projectDataJson[projectIds[hasPath]]
+      [name]: cabDataJson[cabIds[hasPath]]
     };
     return {
       props: {
-        projectDataJson: projectData,
-        projectIds,
-        projectName: projectDataJson[projectIds[hasPath]][0].project,
+        cabDataJson: projectData,
+        cabIds,
+        cabName: cabDataJson[cabIds[hasPath]][0].cab
       },
     };
   }
   // if the project id is not valid, return a 404 page
   return {
     props: {
-      projectDataJson,
-      projectIds,
+      cabDataJson,
+      cabIds,
       paths,
       statusCode: 404,
     },

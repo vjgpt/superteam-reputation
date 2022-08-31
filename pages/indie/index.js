@@ -13,6 +13,9 @@ export default function Home(props) {
   return (
     <div className={styles.container}>
       <main className={styles.main}>
+        <h1 className={styles.title}>
+          Individual Contribution
+        </h1>
         <EnhancedTable
           rows={leaderboardDataWithSkills}
           uniqueSkills={skills}

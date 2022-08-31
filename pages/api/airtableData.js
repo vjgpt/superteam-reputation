@@ -2,7 +2,9 @@ import { getIndieRecordsFunction,
         getCommunityRecordsFunction, 
         getProjectsWorkRecordsFunction, 
         getProjectTitleFunction,
-        getBountiesRecordsFunction 
+        getBountiesRecordsFunction,
+        getCabsRecordsFunction,
+        getAllTitleFunction
       } from "../../lib/airtable";
 
 const getIndieRecordsApi = async (req, res) => {
@@ -90,9 +92,22 @@ export default async function handler(req, res) {
     case "bounties":
       await getBountiesRecordsFunction(req, res);
       break;
-    // case "project":
-    //   await getProjectTitle(req, res);
-    //   break;
+    case "cabs":
+      await getCabsRecordsFunction(req, res).then(data => {
+        res.json(data);
+      }).catch(error => {
+        res.status(400);
+        res.json({ message: "Something went wrong", error });
+      })
+      break;
+    case "title":
+      await getAllTitleFunction(req, res).then(data => {
+        res.json(data);
+      }).catch(error => {
+        res.status(400);
+        res.json({ message: "Something went wrong", error });
+      });
+      break;
     default:
       res.status(404).json({ message: "Not found" });
   }

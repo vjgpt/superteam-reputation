@@ -2,12 +2,12 @@ import styles from '../styles/Home.module.css';
 import * as React from 'react';
 import { getLeaderboardData } from '../lib/utils';
 import EnhancedTable from '../components/Leaderboard';
-import { getIndieRecordsFunction, getCommunityRecordsFunction, getProjectsWorkRecordsFunction, getProjectTitleFunction } from '../lib/airtable';
+import { getIndieRecordsFunction, getProjectsWorkRecordsFunction, getCabsRecordsFunction } from '../lib/airtable';
 
 export default function Home(props) {
 
-  const { projectDataJson, indieDataJson } = props;
-  const leaderboardData = getLeaderboardData(projectDataJson, indieDataJson);
+  const { projectDataJson, indieDataJson, cabsDataJson } = props;
+  const leaderboardData = getLeaderboardData(projectDataJson, indieDataJson, cabsDataJson);
 
   // get the unique skills from the leaderboard data
   let skills = []
@@ -51,6 +51,9 @@ export default function Home(props) {
   return (
     <div className={styles.container}>
       <main className={styles.main}>
+        <h1 className={styles.title}>
+          Superteam Reputation Leaderboard
+        </h1>
         <EnhancedTable
           rows={leaderboardDataWithSkills}
           uniqueSkills={skills}
@@ -65,11 +68,13 @@ export async function getStaticProps () {
  
   const indieDataJson = await getIndieRecordsFunction();
 
+  const cabsDataJson = await getCabsRecordsFunction();
 
   return {
     props: {
       projectDataJson,
       indieDataJson,
+      cabsDataJson,
     },
     revalidate: 30,
   };
