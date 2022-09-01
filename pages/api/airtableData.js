@@ -89,6 +89,7 @@ export default async function handler(req, res) {
     case "projects":
       await getProjectsRecordsApi(req, res);
       break;
+      
     case "bounties":
       await getBountiesRecordsFunction(req, res).then(data => {
         res.json(data);
@@ -97,6 +98,7 @@ export default async function handler(req, res) {
         res.json({ message: "Something went wrong", error });
       });
       break;
+
     case "cabs":
       await getCabsRecordsFunction(req, res).then(data => {
         res.json(data);
@@ -105,6 +107,7 @@ export default async function handler(req, res) {
         res.json({ message: "Something went wrong", error });
       })
       break;
+
     case "title":
       await getAllTitleFunction(req, res).then(data => {
         res.json(data);

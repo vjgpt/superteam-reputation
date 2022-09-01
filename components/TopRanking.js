@@ -32,12 +32,8 @@ export default function TopRanking() {
                 <span className={styles.count}>3</span>
                 <h2>Pallavi</h2>
                 </li>
-                
                 </ul>
-                
                 </div>
-
-
             </div>
 
     )
