@@ -7,7 +7,7 @@ import { getCabsRecordsFunction, getProjectsWorkRecordsFunction } from '../../li
 const Cabs = (project) => {
   const { cabDataJson, cabName } = project;
 
-  const leaderboardData = getLeaderboardData(cabDataJson, undefined, undefined);
+  const leaderboardData = getLeaderboardData(cabDataJson, undefined, undefined, undefined);
 
   const { skills, leaderboardDataWithSkills } = transformLeaderboardData(leaderboardData);
 
@@ -62,15 +62,7 @@ export const getStaticProps = async (context) => {
         cabIds,
         cabName: cabDataJson[cabIds[hasPath]][0].cab
       },
+      revalidate: 30,
     };
   }
-  // if the project id is not valid, return a 404 page
-  return {
-    props: {
-      cabDataJson,
-      cabIds,
-      paths,
-      statusCode: 404,
-    },
-  };
 }

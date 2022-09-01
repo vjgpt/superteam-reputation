@@ -7,7 +7,7 @@ import { getProjectsWorkRecordsFunction } from '../../lib/airtable';
 const Projects = (project) => {
   const { projectDataJson, projectName  } = project;
 
-  const leaderboardData = getLeaderboardData(projectDataJson, undefined);
+  const leaderboardData = getLeaderboardData(projectDataJson, undefined, undefined, undefined);
 
   const { skills, leaderboardDataWithSkills } = transformLeaderboardData(leaderboardData);
 
@@ -62,15 +62,7 @@ export const getStaticProps = async (context) => {
         projectIds,
         projectName: projectDataJson[projectIds[hasPath]][0].project,
       },
+      revalidate: 30,
     };
   }
-  // if the project id is not valid, return a 404 page
-  return {
-    props: {
-      projectDataJson,
-      projectIds,
-      paths,
-      statusCode: 404,
-    },
-  };
 }

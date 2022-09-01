@@ -2,19 +2,19 @@ import styles from '../../styles/Home.module.css';
 import * as React from 'react';
 import { getLeaderboardData, transformLeaderboardData } from '../../lib/utils';
 import EnhancedTable from '../../components/Leaderboard';
-import { getIndieRecordsFunction } from '../../lib/airtable';
+import { getBountiesRecordsFunction, getIndieRecordsFunction } from '../../lib/airtable';
 
 export default function Home(props) {
 
-  const { projectDataJson, indieDataJson } = props;
-  const leaderboardData = getLeaderboardData(projectDataJson, indieDataJson, undefined, undefined);
+  const { bountyDataJson } = props;
+  const leaderboardData = getLeaderboardData(undefined, bountyDataJson, undefined, undefined);
   const { skills, leaderboardDataWithSkills } = transformLeaderboardData(leaderboardData);
 
   return (
     <div className={styles.container}>
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Individual Contribution
+          Bounties Contribution
         </h1>
         <EnhancedTable
           rows={leaderboardDataWithSkills}
@@ -26,12 +26,11 @@ export default function Home(props) {
 }
 
 export async function getStaticProps () {
-  const indieDataJson = await getIndieRecordsFunction();
-
+  const bountyDataJson = await getBountiesRecordsFunction();
 
   return {
     props: {
-      indieDataJson,
+      bountyDataJson,
     },
     revalidate: 30,
   };
