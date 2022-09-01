@@ -90,7 +90,12 @@ export default async function handler(req, res) {
       await getProjectsRecordsApi(req, res);
       break;
     case "bounties":
-      await getBountiesRecordsFunction(req, res);
+      await getBountiesRecordsFunction(req, res).then(data => {
+        res.json(data);
+      }).catch(error => {
+        res.status(400);
+        res.json({ message: "Something went wrong", error });
+      });
       break;
     case "cabs":
       await getCabsRecordsFunction(req, res).then(data => {
