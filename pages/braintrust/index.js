@@ -4,7 +4,7 @@ import { getLeaderboardData, transformLeaderboardData } from '../../lib/utils';
 import EnhancedTable from '../../components/Leaderboard';
 import { getBrainTrustRecordsFunction } from '../../lib/airtable';
 
-export default function Home(props) {
+export default function Braintrust(props) {
 
   const { btDataJson } = props;
   const leaderboardData = getLeaderboardData(undefined, btDataJson, undefined, undefined, undefined);
