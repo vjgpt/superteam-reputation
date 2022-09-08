@@ -38,6 +38,9 @@ export default function Navbar(props) {
                 <li className="nav-item">
                 <Link href="/bounties"><a className="nav-link" >Bounties</a></Link>
                 </li>
+                <li className="nav-item">
+                <Link href="/braintrust"><a className="nav-link" >Braintrust</a></Link>
+                </li>
                 <li className="nav-item dropdown">
                     <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Projects

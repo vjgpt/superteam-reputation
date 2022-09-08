@@ -2,12 +2,12 @@ import styles from '../styles/Home.module.css';
 import * as React from 'react';
 import { getLeaderboardData } from '../lib/utils';
 import EnhancedTable from '../components/Leaderboard';
-import { getIndieRecordsFunction, getProjectsWorkRecordsFunction, getCabsRecordsFunction, getBountiesRecordsFunction } from '../lib/airtable';
+import { getIndieRecordsFunction, getProjectsWorkRecordsFunction, getCabsRecordsFunction, getBountiesRecordsFunction, getBrainTrustRecordsFunction } from '../lib/airtable';
 
 export default function Home(props) {
 
-  const { projectDataJson, indieDataJson, cabsDataJson, bountyDataJson } = props;
-  const leaderboardData = getLeaderboardData(projectDataJson, indieDataJson, cabsDataJson, bountyDataJson);
+  const { projectDataJson, indieDataJson, cabsDataJson, bountyDataJson, btDataJson } = props;
+  const leaderboardData = getLeaderboardData(projectDataJson, indieDataJson, cabsDataJson, bountyDataJson, btDataJson);
 
   // get the unique skills from the leaderboard data
   let skills = []
@@ -72,12 +72,15 @@ export async function getStaticProps () {
 
   const bountyDataJson = await getBountiesRecordsFunction();
 
+  const btDataJson = await getBrainTrustRecordsFunction();
+
   return {
     props: {
       projectDataJson,
       indieDataJson,
       cabsDataJson,
       bountyDataJson,
+      btDataJson,
     },
     revalidate: 30,
   };
