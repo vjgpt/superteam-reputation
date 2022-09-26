@@ -65,6 +65,9 @@ export default function Navbar(props) {
                         ))}
                     </div>
                 </li>
+                <li className="nav-item">
+                <Link href="/claimxp"><a className="nav-link" >Claim XP Form</a></Link>
+                </li>
             </ul>
         </div>
         </nav>
