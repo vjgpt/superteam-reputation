@@ -8,7 +8,6 @@ const ClaimXP = function ClaimXP() {
         className="airtable-embed" 
         src="https://airtable.com/embed/shrxXBIaztqhDCG79?backgroundColor=gray" 
         frameBorder="0" 
-        onmousewheel="" 
         style={{
           background: 'transparent', 
           border: 'none',
