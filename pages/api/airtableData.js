@@ -1,7 +1,6 @@
 import { getIndieRecordsFunction, 
         getCommunityRecordsFunction, 
-        getProjectsWorkRecordsFunction, 
-        getProjectTitleFunction,
+        getProjectsWorkRecordsFunction,
         getBountiesRecordsFunction,
         getCabsRecordsFunction,
         getAllTitleFunction,
@@ -46,24 +45,6 @@ const getProjectsRecordsApi = async (req, res) => {
 
   try {
     const records = await getProjectsWorkRecordsFunction();
-
-    if (records.length !== 0) {
-      res.json(records);
-    } else {
-      res.json({ message: `id could not be found` });
-    }
-
-  } catch (error) {
-    res.status(500);
-    res.json({ message: "Something went wrong", error });
-  }
-};
-
-const getProjectTitle = async (req, res) => {
-  const { id } = req.query;
-
-  try {
-    const records = await getProjectTitleFunction(id);
 
     if (records.length !== 0) {
       res.json(records);
