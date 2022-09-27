@@ -16,10 +16,10 @@ export default function Navbar(props) {
     const cabIds = cabs  || [];
     
     return (
-        <nav className="navbar navbar-expand-lg navbar-light">
-        <div style={{ borderRadius: '50%', overflow: 'hidden', width: '48px', height: '48px', cursor: 'pointer' }}>
+        <nav className="navbar navbar-expand-lg navbar-dark border-b-[0.5px] border-b-[rgba(255, 255, 255, 0.2)]">
+        <div style={{ width: '173px', height: '30px', cursor: 'pointer' }}>
             <Link href="https://superteam.fun">
-                <Image className="navbar-brand" src="/favicon.ico" width={48} height={50} alt="superteam logo"
+                <Image src="/superteam.svg" width={173} height={30} alt="superteam logo"
                 style={{borderRadius: '50%', cursor: 'pointer'}} />
             </Link>
         </div>
@@ -28,21 +28,21 @@ export default function Navbar(props) {
         </button>
 
         <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
-            <ul className="navbar-nav mr-auto mt-3 mt-lg-0">
-                <li className="nav-item active">
-                <Link href="/"><a className="nav-link" >Leaderboard</a></Link>
+            <ul className="navbar-nav mr-auto mt-3 mt-lg-0 font-semibold text-sm ">
+                <li className="nav-item ">
+                <Link href="/"><a className="nav-link text-[#FFFF] font-archivo " >Leaderboard</a></Link>
                 </li>
                 <li className="nav-item">
-                <Link href="/indie"><a className="nav-link" >Indie Work</a></Link>
+                <Link href="/indie"><a className="nav-link text-[#FFFF] font-archivo" >Indie Work</a></Link>
                 </li>
                 <li className="nav-item">
-                <Link href="/bounties"><a className="nav-link" >Bounties</a></Link>
+                <Link href="/bounties"><a className="nav-link text-[#FFFF]" >Bounties</a></Link>
                 </li>
                 <li className="nav-item">
-                <Link href="/braintrust"><a className="nav-link" >Braintrust</a></Link>
+                <Link href="/braintrust"><a className="nav-link text-[#FFFF]" >Braintrust</a></Link>
                 </li>
                 <li className="nav-item dropdown">
-                    <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a className="nav-link text-[#FFFF] dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Projects
                     </a>
                     <div className="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -54,7 +54,7 @@ export default function Navbar(props) {
                     </div>
                 </li>
                 <li className="nav-item dropdown">
-                    <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a className="nav-link text-[#FFFF] dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     CAB & SubDAO
                     </a>
                     <div className="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -66,7 +66,7 @@ export default function Navbar(props) {
                     </div>
                 </li>
                 <li className="nav-item">
-                <Link href="/claimxp"><a className="nav-link" >Claim XP Form</a></Link>
+                <Link href="/claimxp"><a className="nav-link text-[#FFFF]" >Claim XP Form</a></Link>
                 </li>
             </ul>
         </div>

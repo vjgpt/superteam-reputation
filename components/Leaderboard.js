@@ -76,14 +76,6 @@ function EnhancedTableHead(props) {
     return (
     <TableHead >
         <TableRow >
-        <TableCell
-          padding="none"
-          size="small"
-          // keep this cell on the left side of the table
-          align="left"
-          style={ { width: "30px" } }
-          >
-        </TableCell>
         {headCells.map((headCell) => (
             <TableCell
             key={headCell.id}
@@ -97,7 +89,9 @@ function EnhancedTableHead(props) {
                 overflow: "hidden",
                 whiteSpace: "nowrap",
                 textOverflow: "ellipsis",
-                fontSize: "12px",
+                fontSize: "20px",
+                lineHeight: "22px",
+                fontFamily: "Archivo",
                 fontWeight: "bold",
                 color: "#000",
                 textAlign: "center",
@@ -165,9 +159,7 @@ export default function EnhancedTable({ children, ...props }) {
   
       const styles = theme => ({
           tableRow: {
-           hover: {
-              backgroundColor: '#fc0000',
-             }
+              color: '#FFFFFF',
           }
      });
 
@@ -205,19 +197,10 @@ export default function EnhancedTable({ children, ...props }) {
                         hover
                         tabIndex={-1}
                         key={row.id}
-                        classes={styles.tableRow}
+                        style={{
+                          color: "#FFFFFF",
+                        }}
                       >
-                      <TableCell padding="none" size="small">
-                      <Avatar
-                          sx={{
-                            width: "35px",
-                            height: "35px",
-                            margin: "0px 0px 0px 15px",
-                            borderRadius: "50%",
-                            backgroundColor: "#BEAEE2",
-                          }}
-                          />
-                      </TableCell>
                         <TableCell
                           component="th"
                           id={labelId}
