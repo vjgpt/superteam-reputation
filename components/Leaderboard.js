@@ -79,7 +79,7 @@ function EnhancedTableHead(props) {
         {headCells.map((headCell) => (
             <TableCell
             key={headCell.id}
-            align={headCell.numeric ? "right" : "left"}
+            align={"left"}
             padding={"normal"}
             sortDirection={orderBy === headCell.id ? order : false}
             // make the first column fixed on the left side even if you scroll it horizontally
@@ -94,7 +94,6 @@ function EnhancedTableHead(props) {
                 fontFamily: "Archivo",
                 fontWeight: "bold",
                 color: "#000",
-                textAlign: "center",
                 verticalAlign: "middle",
             }}
             >
@@ -207,18 +206,21 @@ export default function EnhancedTable({ children, ...props }) {
                           key={row.id}
                           scope="row"
                           padding="normal"
+                          style={{
+                            minWidth: "350px",
+                          }}
                         >
                           {row.username}
                         </TableCell>
                         {uniqueSkills.map(item => {
                             return (
                                 // eslint-disable-next-line react/jsx-key
-                                <TableCell align="right">
+                                <TableCell align="left">
                                     {row[item]}
                                 </TableCell>
                             )
                         })}
-                        <TableCell align="right">{row.total_points}XP</TableCell>
+                        <TableCell align="left">{row.total_points}XP</TableCell>
                       </TableRow>
                     );
                   })}

@@ -44,13 +44,14 @@ a {
   background: hsl(38, 79%, 57%) !important;
   font-size: 1.1rem !important;
   padding: 10px !important;
+  font-family: 'Archivo';
 }
 
 .MuiTableCell-sizeMedium{
   font-family: 'Archivo';
   color: white;
   font-size: 1.1rem;
-  padding: 22px !important;
+  padding: 22px;
 }
 .MuiTablePagination-selectLabel{
   font-size: 1.1rem !important;
@@ -84,36 +85,34 @@ a {
   font-size: 22px;
   color: white;
 }
+.nav-link {
+  color: white;
+}
 
 .navbar-collapse{
   color: blue;
-  font: 100% sans-serif;
-  padding: 0.5em 2em;
+  font: 100% ;
+  padding: 0.5em 5%;
   float: right;
 }
 .navbar-nav {
   float: left;
+  color: white;
 }
 .navbar-nav li {
   display: inline-block;
 }
 .navbar-nav li:hover .dropdown-menu {
-  padding: 0.5em;
   display: block;
-  background: rgba(255,255,255,0.4);
   margin-right: 0.5em;
 }
 .dropdown-menu {
-  padding: 0.5em;
   display: none;
-  background: rgba(255,255,255,0.4);
   border-radius: 0.5em;
-
 }
 
 /* rotate caret on hover */
 .dropdown-menu > li > a:hover:after {
   text-decoration: underline;
   transform: rotate(-100deg);
-  background: rgba(180,180,180,0.4);
 }

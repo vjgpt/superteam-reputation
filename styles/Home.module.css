@@ -1,5 +1,6 @@
 .container {
   padding: 0 2rem;
+  background: hsl(255, 46%, 19%);
 }
 
 .main {
