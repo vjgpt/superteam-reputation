@@ -28,6 +28,8 @@
   border-top: 1px solid #eaeaea;
   justify-content: center;
   align-items: center;
+  color: #ffffff;
+  background: hsl(255, 46%, 19%);
 }
 
 .footer a {

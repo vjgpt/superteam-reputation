@@ -24,10 +24,17 @@ a {
 
 /* TableRow */
 .MuiTableRow-root {
-  font-family: 'Archivo';
+  font-family: 'Archivo' !important;
 }
 .MuiTableRow-hover:hover {
   background: hsl(254, 100%, 65%) !important; 
+}
+
+.MuiTableCell-body {
+  font-family: 'Archivo' !important;
+  color: #ffffff !important;
+  font-size: 14px !important;
+  line-height: 15px !important;
 }
 
 .MuiTableHead-root{
@@ -38,6 +45,7 @@ a {
 }
 .MuiTableBody-root {
   background: hsl(254, 100%, 65%);
+  font-family: 'Archivo' !important;
 }
 
 .MuiTablePagination-root{
@@ -48,7 +56,7 @@ a {
 }
 
 .MuiTableCell-sizeMedium{
-  font-family: 'Archivo';
+  font-family: 'Archivo' !important;
   color: white;
   font-size: 1.1rem;
   padding: 22px;
