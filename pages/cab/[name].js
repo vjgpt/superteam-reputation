@@ -7,7 +7,7 @@ import { getCabsRecordsFunction, getProjectsWorkRecordsFunction } from '../../li
 const Cabs = (project) => {
   const { cabDataJson, cabName } = project;
 
-  const leaderboardData = getLeaderboardData(cabDataJson, undefined, undefined, undefined);
+  const leaderboardData = getLeaderboardData(cabDataJson, undefined, undefined, undefined, undefined, undefined);
 
   const { skills, leaderboardDataWithSkills } = transformLeaderboardData(leaderboardData);
 

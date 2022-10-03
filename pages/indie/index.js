@@ -7,7 +7,7 @@ import { getIndieRecordsFunction } from '../../lib/airtable';
 export default function Home(props) {
 
   const { projectDataJson, indieDataJson } = props;
-  const leaderboardData = getLeaderboardData(projectDataJson, indieDataJson, undefined, undefined);
+  const leaderboardData = getLeaderboardData(projectDataJson, indieDataJson, undefined, undefined, undefined, undefined);
   const { skills, leaderboardDataWithSkills } = transformLeaderboardData(leaderboardData);
 
   return (

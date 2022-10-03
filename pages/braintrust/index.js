@@ -7,7 +7,7 @@ import { getBrainTrustRecordsFunction } from '../../lib/airtable';
 export default function Braintrust(props) {
 
   const { btDataJson } = props;
-  const leaderboardData = getLeaderboardData(undefined, btDataJson, undefined, undefined, undefined);
+  const leaderboardData = getLeaderboardData(undefined, btDataJson, undefined, undefined, undefined, undefined);
   const { skills, leaderboardDataWithSkills } = transformLeaderboardData(leaderboardData);
 
   return (

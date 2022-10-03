@@ -7,7 +7,7 @@ import { getProjectsWorkRecordsFunction } from '../../lib/airtable';
 const Projects = (project) => {
   const { projectDataJson, projectName  } = project;
 
-  const leaderboardData = getLeaderboardData(projectDataJson, undefined, undefined, undefined, undefined);
+  const leaderboardData = getLeaderboardData(projectDataJson, undefined, undefined, undefined, undefined, undefined);
 
   const { skills, leaderboardDataWithSkills } = transformLeaderboardData(leaderboardData);
 

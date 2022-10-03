@@ -6,6 +6,7 @@ import { getIndieRecordsFunction,
         getCabsRecordsFunction,
         getAllTitleFunction,
         getBrainTrustRecordsFunction,
+        getStackXpRecordsFunction
       } from "../../lib/airtable";
 
 const getIndieRecordsApi = async (req, res) => {
@@ -119,6 +120,14 @@ export default async function handler(req, res) {
       break;
     case "braintrust":
       await getBrainTrustRecordsFunction(req, res).then(data => {
+        res.json(data);
+      }).catch(error => {
+        res.status(400);
+        res.json({ message: "Something went wrong", error });
+      });
+      break;
+    case "stackxp":
+      await getStackXpRecordsFunction(req, res).then(data => {
         res.json(data);
       }).catch(error => {
         res.status(400);
