@@ -32,6 +32,6 @@ export async function getStaticProps () {
     props: {
       stackXpDataJson,
     },
-    revalidate: 30,
+    revalidate: 10,
   };
 }

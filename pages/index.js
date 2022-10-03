@@ -85,6 +85,6 @@ export async function getStaticProps () {
       btDataJson,
       stackXpDataJson,
     },
-    revalidate: 30,
+    revalidate: 10,
   };
 }

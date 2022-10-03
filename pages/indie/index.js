@@ -33,6 +33,6 @@ export async function getStaticProps () {
     props: {
       indieDataJson,
     },
-    revalidate: 30,
+    revalidate: 10,
   };
 }

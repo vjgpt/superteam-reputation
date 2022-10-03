@@ -41,7 +41,7 @@ export const getStaticPaths = async () => {
   const projectIds = Object.keys(projects);
   const paths = convertProjectNameToId(projectIds);
 
-  return { paths, fallback: false };
+  return { paths, fallback: 'blocking' };
 };
 
 export const getStaticProps = async (context) => {
@@ -62,7 +62,7 @@ export const getStaticProps = async (context) => {
         projectIds,
         projectName: projectDataJson[projectIds[hasPath]][0].project,
       },
-      revalidate: 30,
+      revalidate: 10,
     };
   }
 }

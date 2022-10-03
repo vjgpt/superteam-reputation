@@ -41,7 +41,7 @@ export const getStaticPaths = async () => {
   const cabIds = Object.keys(projects);
   const paths = convertCabNameToId(cabIds);
   console.log(paths);
-  return { paths, fallback: false };
+  return { paths, fallback: 'blocking' };
 };
 
 export const getStaticProps = async (context) => {
@@ -62,7 +62,7 @@ export const getStaticProps = async (context) => {
         cabIds,
         cabName: cabDataJson[cabIds[hasPath]][0].cab
       },
-      revalidate: 30,
+      revalidate: 10,
     };
   }
 }
